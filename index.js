@@ -68,7 +68,6 @@ async function startApolloServer(typeDefs, resolvers) {
     });
     console.log(`Server listening to port ${port}`);
     console.log(`connected to ${process.env.DATABASE_URL}`);
-    console.log(path.join(__dirname, 'public', 'index.html'));
   
 }
 
