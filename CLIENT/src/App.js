@@ -66,10 +66,6 @@ export default function App() {
                                 <MissingRoute />
                                 }>
                             </Route>
-                            <Route exact path="/api" element={
-                                <MissingRoute />
-                                }>
-                            </Route>
                             <Route exact path="/" element={
                                 <>
                                     <div className="ads-container">

@@ -43,7 +43,7 @@ import ComingSoon from './components/coming-soon/coming-soon-component';
 
   if(process.env.NODE_ENV === production){
     var client = new ApolloClient({
-      uri: 'https://lobster-app-nnhnm.ondigitalocean.app/graphql',
+      uri: 'https://racoins.cc/api/graphql',
       cache: new InMemoryCache({
         typePolicies: {
           Coins: {
