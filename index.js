@@ -56,10 +56,10 @@ async function startApolloServer(typeDefs, resolvers) {
         cors: corsOptions
      });
 
-    app.use(express.static(path.join(__dirname, 'client/dist')));
+    app.use(express.static(path.join(__dirname, 'CLIENT/dist')));
 
     app.get('/*', function (req, res) {
-       res.sendFile(path.join(__dirname, 'client/dist', 'index.html'));
+       res.sendFile(path.join(__dirname, 'CLIENT/dist', 'index.html'));
     });
 
     const port = process.env.PORT || 5000;
@@ -68,6 +68,8 @@ async function startApolloServer(typeDefs, resolvers) {
     });
     console.log(`Server listening to port ${port}`);
     console.log(`connected to ${process.env.DATABASE_URL}`);
+    console.log(path.join(__dirname, 'public', 'index.html'));
+  
 }
 
 startApolloServer(typeDefs, resolvers);
