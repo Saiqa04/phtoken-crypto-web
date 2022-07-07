@@ -1,0 +1,281 @@
+@import '../../styles/variables';
+
+.promoted-coins-container {
+    margin-bottom: 40px;
+    label {
+        color: $font-theme-1;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        margin-bottom: 30px;
+
+        thead {
+            background-color: $header-color;
+        }
+        tbody {
+            tr {
+                &:hover {
+                    background-color: #1a2233;
+                }
+            }
+        }
+        th, td {
+
+            .coin-name {
+                text-decoration: none;
+                color: $font-theme-1;
+            }
+
+            &:nth-child(3){
+                //NAME COLUMN
+                text-align: left !important;
+                padding: 0;
+            }   
+                ///LOGO
+            &:nth-child(2) {
+                padding: 0;
+            }
+
+            //CHAIN
+            &:nth-child(5){
+                text-align: left !important;
+                padding: 0;
+            }
+        }
+
+        th {
+            color: #525a70;
+            text-align: center;
+            padding: 18px 14px;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 400;
+            
+            //CHAIN
+            &:nth-child(5){
+                padding: 15px;
+            }
+        }
+        td {
+            text-align: center;
+            padding: 22px;
+            font-size: 12px;
+            color: $font-theme-1;
+            border-bottom: 1px solid #1d2436;
+
+            &:nth-child(1) {
+                width: 4%;
+            }
+            &:nth-child(2) {
+                width: 3%;
+            }
+            &:nth-child(3) {
+                width: 15%;
+            }
+            &:nth-child(6),  &:nth-child(7) {
+                width: 10%;
+            }
+            &:nth-child(8) {
+                width: 15%;
+            }
+            &:nth-child(9) {
+                width: 10%;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+            &:nth-child(10) {
+                width: 10%;
+            }
+            
+            .logoIcon {
+                height: 32px;
+                width: 32px;
+                margin-right: 5px;
+                border-radius: 10px;
+            }
+            .logoChain {
+                margin-right: 5px;
+                max-height: 21px;
+                max-width: 21px;
+            }
+            .chain {
+               margin-top: 2px;
+            }
+            .row-name-flex {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .audited {
+                font-size: 9px;
+                background-color: #bf1bba;
+                padding: 3px;
+                color: #fff;
+                border-radius: 3px;
+                margin-right: 2px;
+            }
+
+            .isPresale {
+                color: #bf1bba;
+            }
+
+            .doxxed {
+                font-size: 9px;
+                background-color: #097518;
+                padding: 3px;
+                color: #fff;
+                border-radius: 3px;
+            }
+
+            .not-applicable {
+                color: red;
+                font-weight: 600;
+                font-size: 10px;
+            }
+
+            .coin-name {
+                cursor: pointer;
+            }
+
+            .price-up {
+                color: $color-theme-3;
+            }
+
+            .price-down {
+                color: red;
+            }
+
+            .button {
+                padding: 6px 25px;
+                border-radius: 5px;
+                border: 1px solid $color-theme-3;
+                font-size: 12px;
+                transition: 0.3s;
+                background-color: transparent;
+                text-decoration: none;
+                color: $color-theme-3;
+                cursor: pointer;
+                box-shadow: 1px 1px 8px 0px rgb(21, 100, 54);
+                white-space: nowrap;
+                overflow: hidden;
+                &:hover, &.voted {
+                    background-color: $color-theme-3;
+                    color: white;    
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        table {
+            th,td {
+                &:nth-child(7) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1100px) {
+        table {
+            th,td {
+                .button {
+                    padding: 6px 23px;
+                }
+                &:nth-child(10) {
+                    width: 15%;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 880px) {
+        table {
+            td, th {
+                font-size: 11px;
+                .button {
+                    padding: 6px 20px;
+                }
+
+                &:nth-child(4) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 745px) {
+        table {
+            td, th {
+                //24HR CHANGE
+                &:nth-child(7) {
+                    display: none;
+                }
+
+                font-size: 10px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 645px) {
+        label {
+            padding-left: 15px;
+        }
+
+        table {
+            td, th {
+                //SYMBOL - CHAIN - PRICE
+                &:nth-child(4), &:nth-child(5), &:nth-child(6) {
+                    display: none;
+                }
+
+                //NAME
+                &:nth-child(3) {
+                    width: 30%;
+                    padding-left: 2px;
+                }
+                //IMAGE LOGO
+                &:nth-child(2) {
+                    padding-left: 10px;
+                    padding-right: 0;
+                }
+                //COIN ID
+                &:first-child {
+                    display: none;
+                }
+
+                &:nth-child(10) {
+                    width: 20%;
+                }
+
+                .button {
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 470px) {
+        table {
+            td, th {
+                //MARKETCAP
+                &:nth-child(8) {
+                    width: 30%;
+                }
+                //LAUNCH
+                &:nth-child(9) {
+                    display: none;
+                }
+                &:nth-child(10) {
+                    width: 25%;
+                }
+            }
+        }
+    }
+}

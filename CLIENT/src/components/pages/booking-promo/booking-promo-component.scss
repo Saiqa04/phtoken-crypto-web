@@ -1,0 +1,338 @@
+@import '../../../styles/variables';
+
+.pb-container {
+    margin-top: 70px;
+    background-color: $color-theme-1;
+    border-radius: 15px;
+    padding: 20px 20px 50px 20px;
+    color: $font-theme-1;
+    border: 1px solid #202940;
+    box-shadow: 0 2px 4px 0 #0f131c;
+    transition: box-shadow 0.25s;
+    
+    p {
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
+
+    .button-theme {
+        border-radius: 8px;
+        padding: 10px 15px;
+        cursor: pointer;
+    }
+    .pb-header {
+        padding: 10px 0px;
+    }
+    .booking-process{
+       div {
+            &:first-child {
+                font-size: 16px;
+                color: $color-theme-3;
+            }
+            &:last-child {
+                font-size: 13px;
+                color: #de3e59;
+            }
+       }
+    }
+    .booking-process, .prices {
+        font-size: 13px;
+        margin-bottom: 30px;
+    }
+
+    .flex-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    h3,h2,h4,h5,h1 {
+        margin-block-start: 0em;
+        margin-block-end: 0em;
+    }
+    
+    h3 {
+        font-weight: 600;
+    }
+    h4 {
+        font-weight: 500;
+    }
+
+    .booking-wrapper {
+        .summary-container {        
+            flex: 1;
+            margin-left: 20px;
+            max-width: 450px;
+
+            .your-reservation{
+                p {
+                    font-size: 12px;
+                    margin-bottom: 10px;
+                }
+                table {
+                    width: 100%;
+                    background-color: white;
+                    border-radius: 8px;
+                    color: $color-theme-1;
+                    margin-bottom: 5px;
+                    
+                    th {
+                        text-align: left;
+                        font-weight: 500;  
+                        padding-top: 10px;
+                        font-size: 12px;
+
+                        &:first-child {
+                            width: 70%;
+                        }
+                    }
+                    th,td {
+                        &:first-child {
+                           padding-left: 10px;
+                        }
+                    }
+
+                    td {
+                        font-size: 14px;
+                        padding: 5px 0px;
+                        &:first-child {
+                           font-weight: 500;
+                        }
+                    }
+                    tr{
+                        .end-date_valid {
+                            color: black;
+                        }
+                        .invalid {
+                            color: red;
+                        }
+                    }
+                }
+                button {
+                    &.reserve {
+                        background-color: $color-theme-3;
+                        border: 1px solid $color-theme-3;
+                        color: white;
+                        width: 100%;
+                        margin: 0px auto;
+                    }
+                }
+            }
+        }
+        .prices-container-wide {
+            text-align: center;  
+            flex: 1;
+            p {
+                font-size: 12px;
+            }
+           table {
+               width: 90%;
+               background-color: black;
+               border: 1px solid $color-theme-2;
+               border-radius: 8px;
+               color: white;
+               margin: 10px auto;
+               padding: 10px;
+               font-size: 15px;
+               tbody {
+                   td {
+                       padding-top: 5px;
+                       padding-bottom: 5px;
+                       &:first-child {
+                           text-align: left;
+                       }
+                   }
+               }
+           }
+           .discounts {
+               padding: 20px;
+
+               span {
+                    font-size: 16px;
+                  /* &:first-child{
+                     font-size: 14px;
+                   }
+                   &:nth-child(3){
+                    font-size: 16px;
+                   }
+                   &:last-child{
+                    font-size: 18px;
+                   } */
+               }
+           }
+        }
+        .calendar-container {
+            flex: 1;
+            max-width: 450px;
+
+            p {
+                font-size: 12px;
+            }
+
+            .calendar-type-label {
+                font-size: 12px;
+                text-align: center;
+                padding: 5px;
+            }
+            .calendar {
+               
+                .start_end-date {
+                    background-color: $color-theme-3;
+                    border: 1px solid $color-theme-3;
+                    color: white;
+                    width: 100%;
+                    margin: 2px auto;
+                }
+            }
+            .ad-spot {
+                max-width: 451px;
+                margin-bottom: 1px;
+                margin-top: 10px;
+                button {
+                    width: 50%;
+                    background-color: white;
+                    border: 1px solid $header-color;
+                    &:last-child {
+                        width: 100% !important;
+                    }
+
+                    &.active {
+                        background-color: $color-theme-2;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+
+    .promote-qstn_email {
+        margin-top: 100px;
+        padding: 20px;
+        text-align: center;
+
+        p {
+            font-size: 14px;
+
+            span {
+                color: $color-theme-2;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .reservation-table {
+        margin-top: 70px;
+
+        .textbox-search {
+            margin-bottom: 10px;
+            input {
+                padding: 10px 14px;
+                width: 250px;
+                margin-left: 1px;
+                outline: none;
+                border-radius: 5px;
+                border: 1px solid $header-color;
+            }
+    
+            button {
+                background-color: white;
+                border: 1px solid $header-color;
+                border-radius: 5px;
+             }
+        }
+        table {
+            width: 100%;
+            border: 1px solid $color-theme-2;
+            font-size: 13px;
+            th {
+                background-color: black;
+            }
+            th,td {
+                font-weight: 400;
+                text-align: left;
+                padding: 15px 10px;
+            }
+        }
+
+        @media screen and (max-width: 560px) {            
+        overflow-x: scroll;
+            .textbox-search {
+                width: 100%;
+                input {
+                    margin-left: 0;
+                    width: 60%;
+                }
+                button {
+                    width: 30%;
+                }
+            }
+            table {
+                font-size: 11px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 1000px) {
+        .flex-row {
+            flex-direction: column;
+        }
+        .prices-container-wide {
+            display: none;
+        }
+        .prices-container-mobile {
+            margin-top: 20px;
+            max-width: 451px;
+            p {
+                font-size: 12px;
+            }
+            table {
+                width: 100%;
+                background-color: black;
+                border: 1px solid $color-theme-2;
+                border-radius: 8px;
+                color: white;
+                margin: 10px auto;
+                padding: 10px;
+                font-size: 15px;
+                tbody {
+                    td {
+                        
+                       padding-top: 5px;
+                       padding-bottom: 5px;
+
+                        &:first-child {
+                            text-align: left;
+                        }
+                    }
+                }
+            }
+
+            .discounts {
+                padding: 20px 0px;
+ 
+                span {
+                    &:first-child{
+                      font-size: 14px;
+                    }
+                    &:nth-child(3){
+                     font-size: 16px;
+                    }
+                    &:last-child{
+                     font-size: 18px;
+                    }
+                }
+            }
+        }
+        .booking-wrapper {
+            .summary-container {
+                margin-top: 20px;
+                margin-left: 0px;
+            }
+        }
+        
+    }
+    @media screen and (min-width: 1000px) {
+        .prices-container-mobile {
+            display: none;
+        }
+    }
+}

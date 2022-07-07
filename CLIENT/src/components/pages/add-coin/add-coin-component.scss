@@ -1,0 +1,117 @@
+@import '../../../styles/variables';
+
+.add-coin-container {
+    color: white;
+    background-color: $color-theme-1;
+    padding: 20px;
+    max-width: 930px;
+    margin: 0 auto;
+    border-radius: 15px;
+    border: 1px solid #202940;
+    box-shadow: 0 2px 4px 0 #0f131c;
+    transition: box-shadow 0.25s;
+    margin-bottom: 50px;  
+    
+    form {
+        .form-wrapper {
+            display: flex;
+            flex-direction: row;
+
+            h3 {
+                margin-block-start: 0;
+                margin-block-end: 0;  
+                margin-bottom: 30px;
+            }
+
+            label {
+                font-size: 12px;
+
+                span {
+                    font-size: 11px;
+                    color: red;
+                }
+            }
+            input, textarea, select {
+                margin-top: 5px;
+                margin-bottom: 15px;
+                background-color: $color-theme-1;
+                border: 1px solid #202940;
+                padding: 10px 8px;
+                border-radius: 5px;
+                color: white;
+                font-size: 13px;
+                resize: vertical;
+                &:focus {
+                    outline: 1px solid #525161;
+                }
+
+                option {
+                    color: white;
+                }
+
+            
+            }
+            .MuiOutlinedInput-input {
+                border: 0;
+            }
+            .details {
+                flex: 1;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                margin-right: 20px;
+            }
+
+            .links {
+                min-width: 340px;
+                display: flex;
+                flex: 1;
+                flex-wrap: wrap;
+                flex-direction: column;
+            }
+        }
+    }
+
+    .submit {
+       text-align: center;
+        margin-top: 40px;
+        margin-bottom: 20px;
+       button {
+            background-color: $color-theme-2;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid #242322;
+            width: 130px;
+            max-height: 40px;
+            cursor: pointer;
+            color: $font-theme-1;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    @media screen and (max-width: 1015px) {
+        form {
+            .form-wrapper {
+                flex-direction: column;
+
+                .details {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 590px) {
+        form {
+            .form-wrapper {
+                flex-direction: column;
+
+                .details {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}

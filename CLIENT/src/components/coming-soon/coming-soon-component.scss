@@ -1,0 +1,261 @@
+.coming-soon-container {
+    height: 100vh;
+    overflow: hidden;
+    background-color: white;
+    display: flex;
+    * {
+        font-family: 'Poppins', sans-serif;
+        color: #474747;
+    }
+
+    .left-content {
+        flex: 1;
+        .header {
+            padding-top: 70px;
+            padding-bottom: 40px;
+            
+            .logo-wrapper {
+                max-width: 150px;
+                background-color: #162c38;
+                padding-left: 150px;
+                padding-top: 20px;
+                padding-bottom: 15px;
+                border-radius: 0px 8px 8px 0px;
+    
+                img {
+                    height: 35px;
+                }
+            }
+        }
+    
+        .content {
+            padding-left: 150px;
+            display: flex;
+            flex-direction: column;
+            p{
+                font-size: 50px;
+                font-weight: 500;
+                margin-block-end: 0;
+                margin-bottom: 10px;
+                line-height: 55px;
+            }
+            span {
+                font-weight: 300;
+            }
+            
+            .timer {
+                margin-top: 50px;
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                .time {
+                    text-align: center;
+                    min-width: 35px;
+                    padding: 5px 8px;
+                    font-size: 25px;
+                    font-weight: 600;
+                }
+                .separator {
+                    font-size: 20px;
+                    margin-top: 10px;
+                    font-weight: 600;
+                    text-align: center;
+                    margin-left: 10px;
+                    margin-right: 10px;
+                }
+                .timer-label {
+                    text-align: center;
+                    text-transform: uppercase;
+                    margin-top: 5px;
+                    font-weight: 500;
+                    font-size: 11px;
+                }
+            }
+            .button {
+                margin-top: 50px;
+                max-width: 100px;
+                text-align: center;
+                border-radius: 10px;
+                padding: 10px;
+                font-size: 14px;
+                cursor: pointer;
+                text-decoration: none;
+                border: 1px solid #3CAFF0;
+                background-color: #3CAFF0;
+                color: white;
+            }
+    
+            .groups {
+                margin-top: 200px;
+                
+                a {
+                    cursor: pointer;
+                    img {
+                        width: 30px;
+                        margin-right: 8px;
+                    }
+                }
+            }
+        }
+    }
+
+    .add-coin-form {
+        flex: 1;
+        padding-left: 70px;
+        padding-right: 70px;
+        padding-top: 30px;
+        background-color: #3a96cc;
+
+        .form-header {
+            font-weight: 600;
+            padding: 10px 0px;
+            span {
+                color: white;
+            }
+        }
+        .add-coin-container {
+            background-color: white;
+            border: 0;
+            border-radius: 5px;
+            box-shadow: none;
+            h3 {
+                display: none;
+            }
+            input, textarea, select, option {
+                border-color: #a6e9fd;
+                background-color: white;
+                color:#162c38;
+            }
+            button {
+                border-color: #3a96cc;
+                &:hover {
+                    background-color: #3a96cc;
+                }
+            }
+        }
+    }
+    
+    @media screen and (max-width: 1600px) {
+        .left-content {
+            .header {
+                .logo-wrapper {
+                    padding-left: 80px;
+                }
+            }
+            .content {
+                padding-left: 80px;
+            }
+        }
+        .add-coin-form {
+            padding: 90px 50px;
+        }
+    }
+    @media screen and (min-width: 1380px){
+        .groups-mobile-view {
+            display: none;
+        }
+    }
+    @media screen and (max-width: 1380px) {
+        height: auto;
+        flex-direction: column;
+        .left-content {
+            .groups {
+                display: none;
+            }
+        }
+        hr {
+            display: none;
+        }
+        .add-coin-form {
+            padding: 0;
+            margin-top: 80px;
+            .form-header {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        .groups-mobile-view {
+            margin: 40px 0px 50px 0px;
+            text-align: center;
+            a {
+                cursor: pointer;
+                img {
+                    width: 30px;
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+    }
+    @media screen and (max-width: 870px) {
+       .left-content {
+            .content {
+                p {
+                    font-size: 45px;
+                }
+            }
+       }
+       .add-coin-form {
+        .form-header {
+            text-align: left;
+            margin-left: 10px;
+        }
+       }
+    }
+    @media screen and (max-width: 770px) {
+        .left-content {
+            .header {
+                .logo-wrapper {
+                    padding-left: 50px;
+                }
+            }
+            .content {
+                padding-left: 50px;
+            }
+        }
+    }
+    @media screen and (max-width: 670px) {
+        .left-content {
+            .header {
+                .logo-wrapper {
+                    padding-left: 20px;
+                }
+            }
+            .content {
+                padding-left: 20px;
+                p {
+                    font-size: 45px;
+                    line-height: 50px;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 570px) {
+        .left-content {
+            .header {
+                padding-top: 50px;
+            }
+            .content {
+                padding-right: 20px;
+                p {
+                    font-size: 30px;
+                    line-height: 35px;
+                }
+    
+                span {
+                    font-size: 14px;
+                }
+    
+                button {
+                    padding: 8px;
+                }
+                .groups {
+                    margin-top: 80px;
+                }
+            }
+        }
+    }
+}

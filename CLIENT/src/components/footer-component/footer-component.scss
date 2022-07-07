@@ -1,0 +1,99 @@
+@import '../../styles/variables';
+
+.footer-container {
+    margin-top: 50px;
+    background-color: $header-color;
+    height: auto;
+
+    .content {
+        max-width: 1380px !important;
+        margin: auto;  
+        padding: 50px 0px;
+        
+        .logo {
+            margin-bottom: 50px;
+            img {
+                height: 35px;
+            }
+        }
+
+       .links {         
+        display: flex;
+        flex-direction: row;
+
+            div {
+                width: 100%;
+            }
+
+            h4 {
+                font-weight: 600;
+                font-size: 14px;
+                text-transform: uppercase;
+                margin-block-start: 0;
+                margin-block-end: 0;
+                color: white;
+                margin-bottom: 10px;
+            }
+
+            a {
+                text-decoration: none;
+                font-size: 14px;
+                color: #525a70;
+            }
+
+
+
+            .services {
+                .header2 {
+                    margin-top: 40px;
+                }
+            }
+
+
+       } 
+
+       @media screen and (max-width: 1380px) {
+        max-width: 1270px !important;
+       }
+
+        @media screen and (max-width: 1270px) {
+            max-width: 1170px !important;
+        }
+
+        @media screen and (max-width: 1170px) {
+            max-width: 1070px !important;
+        }
+
+        @media screen and (max-width: 1070px) {
+            max-width: 970px !important;
+        }
+
+        @media screen and (max-width: 970px) {
+            max-width: 870px !important;
+        }
+
+        @media screen and (max-width: 870px) {
+            max-width: 765px !important;
+        }
+
+        @media screen and (max-width: 770px) {
+            margin-left: 15px;
+            margin-right: 15px;
+
+  
+            .links {
+                flex-wrap: wrap;
+
+                h4 {
+                    margin-top: 10px;
+                }
+                .services {
+                    .header2 {
+                        margin-top: 10px;
+                    }
+                }    
+            }
+        }
+    
+    }
+}
