@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "node index.js",
+    "start": "node index.js",
     "migrate": "npx sequelize-cli db:migrate",
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development --open",
-    "prod": "webpack-dev-server --mode production --open"
+    "build.prod": "webpack --mode development",
+    "build.dev": "webpack --mode production",
+    "test.dev": "webpack-dev-server --mode development --open",
+    "test.prod": "webpack-dev-server --mode production --open"
   },
   "keywords": [],
   "author": "",
