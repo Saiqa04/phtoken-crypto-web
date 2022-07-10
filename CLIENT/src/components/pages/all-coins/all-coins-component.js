@@ -1,20 +1,20 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import moment from 'moment';
 import { useQuery } from '@apollo/client';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import {GET_COINS } from '../../../services/graphql'
-import {svgArrowUp, svgArrowDown} from '../../../utils/SvgIcons'
 import MessageSnackBar from '../../../popups/MessageSnackBar';
 import { useChainContext } from '../../../context/ChainContext';
-import { useMarketDataContext } from '../../../context/MarketDataContext';
+import { FetchCoin24hChange, FetchCoinMarketCap, FetchCoinPrice } from '../../../helpers/CoinDataHelper';
 
 require('../page-theme.scss');
+
 
 export default function AllCoins() {
 
     const {chains} = useChainContext();
-    const {marketData} = useMarketDataContext();
+
     const [snackBar, setSnackBar] = React.useState({
         type: "success",
         message: "",
@@ -23,10 +23,8 @@ export default function AllCoins() {
 
     const {loading, data, fetchMore, networkStatus} = useQuery(GET_COINS, {
         notifyOnNetworkStatusChange: true,
-        fetchPolicy: 'network-only',
         variables: {
-            offset: 0,
-            limit: 1
+            offset: 0
         }
     });
 
@@ -43,13 +41,18 @@ export default function AllCoins() {
         }
     } 
 
+    // Changed to traditional page routing
+    /* 
     const navigate = useNavigate();
     const viewCoinDetails = (coinInfo) => {
         navigate(`/coin/${coinInfo.CoinID}`, {
             state: coinInfo
         });
     };
-
+    const handleVoteClick = (row) => {
+        viewCoinDetails(row);
+    }
+   */
     
     const handleCloseSnackbar = (event, reason) => {
         if (reason === 'clickaway') {
@@ -61,11 +64,6 @@ export default function AllCoins() {
             })
     };
     
-    const handleVoteClick = (row) => {
-        viewCoinDetails(row);
-    }
-
-
     return (
         <div className="coin-page">
              <MessageSnackBar open={snackBar.open} type={snackBar.type} close={handleCloseSnackbar} message={snackBar.message}/>
@@ -110,29 +108,13 @@ export default function AllCoins() {
                                 </div>
                             </td>
                             <td>
-                               {marketData.length === 0 ? "-" : 
-                                    marketData?.filter((e) => e.address.toLowerCase() === row.ContractAddress.toLowerCase()).map((mData) =>
-                                        <span key={row.CoinID}>{mData.priceUsd.toLocaleString("en-US",{minimumFractionDigits: 2, maximumFractionDigits: 10, style:"currency", currency: "USD"})}</span>
-                                    )
-                               }
+                                <FetchCoinPrice data={row}/>
                             </td>
                             <td>
-                                {
-                                    marketData.length === 0 ? "-" : 
-                                    marketData?.filter((e) => e.address.toLowerCase() === row.ContractAddress.toLowerCase()).map((mData) => (
-                                        ((mData.priceUsd.toFixed(15) - mData.priceUsd24hAgo.toFixed(15)) / mData.priceUsd24hAgo.toFixed(15) * 100) >= 0.00 ? 
-                                        <span key={row.CoinID} className='price-up'>{svgArrowUp}&nbsp;{((mData.priceUsd.toFixed(15) - mData.priceUsd24hAgo.toFixed(15)) / mData.priceUsd24hAgo.toFixed(15) * 100).toFixed(2) + "%"}</span> : 
-                                        <span key={row.CoinID} className='price-down'>{svgArrowDown}&nbsp;{((mData.priceUsd.toFixed(15) - mData.priceUsd24hAgo.toFixed(15)) / mData.priceUsd24hAgo.toFixed(15) * 100).toFixed(2) + "%"}</span>
-                                    )
-                                )}
+                                <FetchCoin24hChange data={row} />
                             </td>
                             <td>
-                                {
-                                    marketData.length === 0 ? "-" : 
-                                    (row.IsPresale ? <span className='isPresale'>Presale</span> : marketData?.filter((e) => e.address.toLowerCase() === row.ContractAddress.toLowerCase()).map((mData) =>
-                                        <span key={row.CoinID}>{mData.marketCapUsd.toLocaleString("en-US",{maximumFractionDigits: 2, style:"currency", currency: "USD"})}</span>
-                                    ))
-                                }
+                                 <FetchCoinMarketCap data={row}/>
                             </td>
                             <td>{moment(row.LaunchDate, "YYYYMMDD").fromNow()}</td>
                             <td>{row.AllTimeVote}</td>

@@ -21,6 +21,19 @@ const resolvers = {
         },
     }),
     Query: {
+        ContractAddresses: async (root, args, context) => {
+            try{
+                return await db.Coins.findAll({
+                    limit: args.limit,
+                    where: {
+                        Status: "Approved"
+                    }
+                })
+            }catch(err){
+                return err;
+            }
+        },
+
         Coins: async (root, args, context) => {
             try{
                 return await db.Coins.findAll({
@@ -414,9 +427,6 @@ const resolvers = {
         },
     },
 
-
-
-
     Mutation: {
         voteCoin: async (_, {CoinID}, context) => {
             const {count, rows} = await db.Votes.findAndCountAll({
@@ -546,7 +556,7 @@ const resolvers = {
             await coin.save();
         },
 
-        updateCoinInfo: async(_,{CoinID, Name,Symbol,Chain,ContractAddress,Description,IsPresale,IsDoxxed,LaunchDate,Telegram,Website,Twitter,Discord,AuditLink,LogoLink, ContactEmail}, context) => {
+        updateCoinInfo: async(_,{CoinID, Name,Symbol,Chain,ContractAddress,Description,IsPresale,IsDoxxed,LaunchDate,Telegram,Website,Twitter,Discord,AuditLink,LogoLink, ContactEmail, Status}, context) => {
                 
                 const coin = await db.Coins.findOne({
                     where: {
@@ -574,6 +584,7 @@ const resolvers = {
                 coin.AuditLink = AuditLink;
                 coin.LogoLink = LogoLink;
                 coin.ContactEmail = ContactEmail;
+                coin.Status = Status
 
                 await coin.save();
 

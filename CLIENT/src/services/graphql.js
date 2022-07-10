@@ -28,6 +28,17 @@ export const GET_PROMOTED_COINS = gql`
         }
     }
 `;
+
+export const GET_ALL_ADDRESSES = gql`
+    query ContractAddresses($limit: Int!) {
+        ContractAddresses(limit: $limit) {
+            CoinID
+            Name
+            ContractAddress
+        }
+    }
+`;
+
 export const GET_COINS = gql`
     query GetCoins($offset: Int!){
         Coins(limit: 20, offset: $offset){

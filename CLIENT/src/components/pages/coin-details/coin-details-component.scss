@@ -212,8 +212,8 @@
                     color: #8c8c8c;
                     font-size: 16px;
 
-                    .not-applicable {
-                        color: red;
+                    .no-data {
+                        color: rgb(145, 145, 145);
                         font-weight: 600;
                         font-size: 12px;
                     }
@@ -223,15 +223,14 @@
                         color: $font-theme-1;
                         font-size: 14px;
                         font-weight: 400;
+                    }
 
-                        .price-up {
-                            color: $color-theme-3;
-                        }
+                    .price-up {
+                        color: $color-theme-3;
+                    }
 
-                        .price-down {
-                            color: red;
-                        }
-                        
+                    .price-down {
+                        color: red;
                     }
                 }
 

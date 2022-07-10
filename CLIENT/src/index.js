@@ -13,6 +13,8 @@ import { createRoot } from 'react-dom/client';
 import Maintenance from '../src/components/maintenance-component/maintenance-component';
 import {MissingRoute} from '../src/utils/MissingRoute';
 import ComingSoon from './components/coming-soon/coming-soon-component';
+import {ErrorBoundary} from 'react-error-boundary'
+import {ErrorHandler} from './helpers/ErrorHandler'
 
   const production = "production";
   const development = "development";
@@ -20,7 +22,6 @@ import ComingSoon from './components/coming-soon/coming-soon-component';
   if(process.env.NODE_ENV === development){
     var client = new ApolloClient({
       uri: 'http://localhost:5000/api/graphql',
-      //uri: 'https://lobster-app-nnhnm.ondigitalocean.app/graphql',
       cache: new InMemoryCache({
         typePolicies: {
           Coin: {
@@ -43,7 +44,8 @@ import ComingSoon from './components/coming-soon/coming-soon-component';
 
   if(process.env.NODE_ENV === production){
     var client = new ApolloClient({
-      uri: 'https://racoins.cc/api/graphql',
+    ///uri: 'http://localhost:5000/api/graphql',
+     uri: 'https://racoins.cc/api/graphql',
       cache: new InMemoryCache({
         typePolicies: {
           Coins: {
@@ -102,15 +104,17 @@ import ComingSoon from './components/coming-soon/coming-soon-component';
     )
   }else{
     root.render(
-      <ApolloProvider client={client}> 
-        <MarketDataContextProvider>
-          <ChainContextProvider>
-              <Router>
-                    <App />
-              </Router>
-          </ChainContextProvider>
-        </MarketDataContextProvider>
-      </ApolloProvider>
+      <ErrorBoundary FallbackComponent={ErrorHandler}>
+        <ApolloProvider client={client}> 
+          <MarketDataContextProvider>
+            <ChainContextProvider>
+                <Router>
+                      <App />
+                </Router>
+            </ChainContextProvider>
+          </MarketDataContextProvider>
+        </ApolloProvider>
+      </ErrorBoundary>
     )
   }
 

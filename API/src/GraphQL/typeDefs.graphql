@@ -3,6 +3,7 @@
  
  type Query {
     Coins(limit: Int!, offset: Int!): [Coin]
+    ContractAddresses(limit: Int!): [Coin]
     PromotedCoins: [PromotedCoin],
     CoinByID(CoinID: ID!): Coin,
     CoinByNameOrAddress(Name: String, ContractAddress: String): [Coin],
@@ -100,7 +101,6 @@ type User {
    IsLogin: Boolean
 }
 
-
 type BannerAd {
    id: ID!
    BannerType: String
@@ -177,6 +177,7 @@ type BannerAd {
       Discord: String,
       LogoLink: String!,
       ContactEmail: String
+      Status: String
       updatedAt: Date
     ): String
       
@@ -193,7 +194,6 @@ type BannerAd {
       Discount: Float
       PaymentStatus: String
     ): String
-
 
     createBannerAd(
       BannerType: String,
@@ -214,4 +214,6 @@ type BannerAd {
     removePromotedCoin(id: Int!): String
 
     createChain(ChainSymbol: String!, Name: String!, Logo: String): String
+
+
  }

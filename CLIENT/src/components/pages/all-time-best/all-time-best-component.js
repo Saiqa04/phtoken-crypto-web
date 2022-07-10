@@ -8,6 +8,7 @@ import {svgArrowUp, svgArrowDown} from '../../../utils/SvgIcons';
 import MessageSnackBar from '../../../popups/MessageSnackBar';
 import { useChainContext } from '../../../context/ChainContext';
 import { useMarketDataContext } from '../../../context/MarketDataContext';
+import { FetchCoin24hChange, FetchCoinMarketCap, FetchCoinPrice } from '../../../helpers/CoinDataHelper';
 
 require('../page-theme.scss');
 
@@ -109,29 +110,13 @@ export default function AtbCoins() {
                                 </div>
                             </td>
                             <td>
-                               {marketData.length === 0 ? "-" : 
-                                    marketData?.filter((e) => e.address.toLowerCase() === row.ContractAddress.toLowerCase()).map((mData) =>
-                                        <span key={row.CoinID}>{mData.priceUsd.toLocaleString("en-US",{minimumFractionDigits: 2, maximumFractionDigits: 10, style:"currency", currency: "USD"})}</span>
-                                    )
-                               }
+                                <FetchCoinPrice data={row}/>
                             </td>
                             <td>
-                                {
-                                    marketData.length === 0 ? "-" : 
-                                    marketData?.filter((e) => e.address.toLowerCase() === row.ContractAddress.toLowerCase()).map((mData) => (
-                                        ((mData.priceUsd.toFixed(15) - mData.priceUsd24hAgo.toFixed(15)) / mData.priceUsd24hAgo.toFixed(15) * 100) >= 0.00 ? 
-                                        <span key={row.CoinID} className='price-up'>{svgArrowUp}&nbsp;{((mData.priceUsd.toFixed(15) - mData.priceUsd24hAgo.toFixed(15)) / mData.priceUsd24hAgo.toFixed(15) * 100).toFixed(2) + "%"}</span> : 
-                                        <span key={row.CoinID} className='price-down'>{svgArrowDown}&nbsp;{((mData.priceUsd.toFixed(15) - mData.priceUsd24hAgo.toFixed(15)) / mData.priceUsd24hAgo.toFixed(15) * 100).toFixed(2) + "%"}</span>
-                                    )
-                                )}
+                                <FetchCoin24hChange data={row} />
                             </td>
                             <td>
-                                {
-                                    marketData.length === 0 ? "-" : 
-                                    (row.IsPresale ? <span className='isPresale'>Presale</span> : marketData?.filter((e) => e.address.toLowerCase() === row.ContractAddress.toLowerCase()).map((mData) =>
-                                        <span key={row.CoinID}>{mData.marketCapUsd.toLocaleString("en-US",{maximumFractionDigits: 2, style:"currency", currency: "USD"})}</span>
-                                    ))
-                                }
+                                 <FetchCoinMarketCap data={row}/>
                             </td>
                             <td>{moment(row.LaunchDate, "YYYYMMDD").fromNow()}</td>
                             <td>{row.AllTimeVote}</td>

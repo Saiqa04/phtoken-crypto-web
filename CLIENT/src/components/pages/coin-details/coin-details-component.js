@@ -13,19 +13,12 @@ import poocoinLogo from '../../../../public/icons/poocoin-logo.png';
 import dextoolLogo from '../../../../public/icons/dextools-logo.png';
 import pancakeswapLogo from '../../../../public/icons/pancakeswap-cake-logo.png';
 import uniswapLogo from '../../../../public/icons/uniswap-uni-logo.png';
+import { FetchCoin24hChange, FetchCoinMarketCap, FetchCoinPrice, FetchLiquidity } from '../../../helpers/CoinDataHelper';
 require('./coin-details-component.scss');
 
-const InitialValue = {
-    priceUsd: "",
-    price24hAgo: "",
-    priceChange24h: "",
-    marketCap: "",
-    totalLiquidity: ""
-}
+
 function CoinDetails() {
 
-    const {marketData} = useMarketDataContext();
-    const [coinData, setCoinData] = useState(InitialValue);
     const [snackBar, setSnackBar] = useState({
         type: "success",
         message: "",
@@ -103,28 +96,6 @@ function CoinDetails() {
         </>
     )
 
-    useMemo(() => {
-        let result = marketData?.filter((e) => {
-            if(e.address.toLowerCase() === data?.CoinByID.ContractAddress.toLowerCase()){
-                return e;
-            }
-        });
-        
-        if(result.length === 0){
-            setCoinData(InitialValue)
-        }else{
-            result.map((mData) => 
-                setCoinData({
-                    priceUsd: mData.priceUsd.toLocaleString("en-US",{minimumFractionDigits: 2, maximumFractionDigits: 15, style:"currency", currency: "USD"}),
-                    price24hAgo: mData.priceUsd24hAgo.toFixed(15),
-                    priceChange24h: ((mData.priceUsd.toFixed(15) - mData.priceUsd24hAgo.toFixed(15)) / mData.priceUsd24hAgo.toFixed(15) * 100).toFixed(2),
-                    marketCap: mData.marketCapUsd.toLocaleString("en-US",{ maximumFractionDigits: 2, style:"currency", currency: "USD"}),
-                    totalLiquidity: mData.totalReserveUsd.toLocaleString("en-US",{ maximumFractionDigits: 2, style:"currency", currency: "USD"}),
-                })
-            )               
-        }
-    },[data, marketData])
-
     return (
         <div className='coin-details-container'>
             <MessageSnackBar open={snackBar.open} type={snackBar.type} close={handleCloseSnackbar} message={snackBar.message}/>
@@ -192,15 +163,10 @@ function CoinDetails() {
                                     </Box> : data ? 
                             <div>
                             <h3>{data?.CoinByID.Symbol} Market Data</h3>
-                                <div><p>Price (USD): {coinData.priceUsd === "" ? <span className="not-applicable">N/A</span> : <span>{coinData.priceUsd}</span>}</p></div>
-                                <div><p>Price Change (24hr): <span>{(coinData.priceChange24h > 0.00 ?
-                                    <span className='price-up'>{coinData.priceChange24h + "% "}{svgArrowUp}</span> : coinData.priceChange24h < 0.00 ?
-                                    <span className='price-down'>{coinData.priceChange24h + "% "}{svgArrowDown}</span> : <span className="not-applicable">N/A</span>)}
-                                    </span>
-                                    </p>
-                                </div>
-                                <div><p>Marketcap: <span>{(data?.CoinByID.IsPresale ? "Presale" : coinData.marketCap === ""  ? <span className="not-applicable">N/A</span> : coinData.marketCap)}</span></p></div>
-                                <div><p>Total Liquidity (USD): <span>{(coinData.totalLiquidity === "" ? <span className="not-applicable">N/A</span> : coinData.totalLiquidity)}</span></p></div>
+                                <div><p>Price (USD): <FetchCoinPrice data={data?.CoinByID}/></p></div>
+                                <div><p>Price Change (24hr): <FetchCoin24hChange data={data?.CoinByID}/></p></div>
+                                <div><p>Marketcap: <FetchCoinMarketCap data={data?.CoinByID}/></p></div>
+                                <div><p>Total Liquidity (USD): <FetchLiquidity data={data?.CoinByID}/></p></div>
                             </div> 
                         :  <div></div>
                         } 

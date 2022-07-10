@@ -10,20 +10,20 @@
             color: $font-theme-1;
             font-size: 12px;
             font-weight: 500;
-            padding: 8px 2px;
-            margin-right: 15px;
+            padding: 10px 8px;
+            margin-right: 10px;
             line-height: 40px;
+            border-radius: 5px;
 
             &:hover, &.active {
-                border-bottom: 1px solid $color-theme-2;
+                background-color: rgb(255, 94, 0);
                 i {
-                    color: $color-theme-2;
+                    color: $font-theme-1;
                 }
             }
         }  
         img {
             width: 16px;
-            background-color: red;
         }  
 
     }

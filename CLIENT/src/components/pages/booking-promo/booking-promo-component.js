@@ -150,11 +150,9 @@ export default function PromoteAndBooking(){
                 amountToPay: totalPrice,
                 discount: discount,
                 paymentStatus: "Pending"
-            },
-            onCompleted: () => {
-                setOpenModal(false);
             }
         })
+        setOpenModal(false);
     }
    
     const textFieldTelegramOnChange = (e) => {

@@ -4,47 +4,23 @@ import { useQuery } from '@apollo/client';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import {GET_PROMOTED_COINS} from '../../services/graphql'
-import {svgArrowUp, svgArrowDown} from '../../utils/SvgIcons';
 import MessageSnackBar from '../../popups/MessageSnackBar';
 import { useChainContext } from '../../context/ChainContext';
-import { useMarketDataContext } from '../../context/MarketDataContext';
-
+import { FetchCoin24hChange, FetchCoinMarketCap, FetchCoinPrice } from '../../helpers/CoinDataHelper';
 require('../pages/page-theme.scss');
 
-const InitialValue = {
-    priceUsd: "",
-    price24hAgo: "",
-    priceChange24h: "",
-    marketCap: "",
-    totalLiquidity: ""
-}
 
 function PromotedCoins() {
     const {chains} = useChainContext();
-    const {marketData} = useMarketDataContext();
-    const [coinAddress, setCoinAddress] = useState([]);
-    const [coinData, setCoinData] = useState(InitialValue);
 
     const [snackBar, setSnackBar] = React.useState({
         type: "success",
         message: "",
         open: false
     })
-    const {data, loading} = useQuery(GET_PROMOTED_COINS, {
-        fetchPolicy: 'network-only'
-    });
+    const {data, loading} = useQuery(GET_PROMOTED_COINS);
     
-    const navigate = useNavigate();
-    const viewCoinDetails = (coinInfo) => {
-            navigate(`/coin/${coinInfo.CoinID}`, {
-                state: coinInfo.Coins
-            });
-    };
-
-    const handleVoteClick = (row) => {
-        viewCoinDetails(row);
-    }
-
+   
     const handleCloseSnackbar = (event, reason) => {
         if (reason === 'clickaway') {
           return;
@@ -55,25 +31,10 @@ function PromotedCoins() {
         })
     };
 
-    const fetchAddress = async() => {
-        await data?.PromotedCoins.forEach((coin) =>
-            { setCoinAddress(oldValue => [...oldValue, coin.Coins.ContractAddress])}
-        )
-    }
-
-    const fetchMarketData = async() => {
-       const res = marketData?.filter((e) =>  coinAddress.includes(e.address))
-       setCoinData(res);
-    }
-    useMemo(() => { 
-        fetchAddress();
-        fetchMarketData();
-    },[data, marketData])
-
     return (
         <div className="coin-page">
             <MessageSnackBar open={snackBar.open} type={snackBar.type} close={handleCloseSnackbar} message={snackBar.message}/>
-            <label className='promoted-label'>Promoted Coins {coinData.priceUsd}</label>
+            <label className='promoted-label'>Promoted Coins</label>
             <table style={{width: "100%"}}>
                 <thead key="thead">
                     <tr>
@@ -114,29 +75,13 @@ function PromotedCoins() {
                                 </div>
                             </td>
                             <td>
-                               {marketData.length === 0 ? "-" : 
-                                    marketData?.filter((e) => e.address.toLowerCase() === row.Coins.ContractAddress.toLowerCase()).map((mData) =>
-                                        <span key={row.Coins.CoinID}>{mData.priceUsd.toLocaleString("en-US",{minimumFractionDigits: 2, maximumFractionDigits: 10, style: "currency", currency: "USD"})}</span>
-                                    )
-                               }
+                                <FetchCoinPrice data={row.Coins}/>
                             </td>
                             <td>
-                                {
-                                    marketData.length === 0 ? "-" : 
-                                    marketData?.filter((e) => e.address.toLowerCase() === row.Coins.ContractAddress.toLowerCase()).map((mData) => (
-                                        ((mData.priceUsd.toFixed(15) - mData.priceUsd24hAgo.toFixed(15)) / mData.priceUsd24hAgo.toFixed(15) * 100) >= 0.00 ? 
-                                        <span key={row.Coins.CoinID} className='price-up'>{svgArrowUp}&nbsp;{((mData.priceUsd.toFixed(15) - mData.priceUsd24hAgo.toFixed(15)) / mData.priceUsd24hAgo.toFixed(15) * 100).toFixed(2) + "%"}</span> : 
-                                        <span key={row.Coins.CoinID} className='price-down'>{svgArrowDown}&nbsp;{((mData.priceUsd.toFixed(15) - mData.priceUsd24hAgo.toFixed(15)) / mData.priceUsd24hAgo.toFixed(15) * 100).toFixed(2) + "%"}</span>
-                                    )
-                                )}
+                                <FetchCoin24hChange data={row.Coins} />
                             </td>
                             <td>
-                                {
-                                    marketData.length === 0 ? "-" : 
-                                    (row.Coins.IsPresale ? <span className='isPresale'>Presale</span> : marketData?.filter((e) => e.address.toLowerCase() === row.Coins.ContractAddress.toLowerCase()).map((mData) =>
-                                        <span key={row.Coins.CoinID}>{mData.marketCapUsd.toLocaleString("en-US",{maximumFractionDigits: 2, style: "currency", currency: "USD"})}</span>
-                                    ))
-                                }
+                                <FetchCoinMarketCap data={row.Coins}/>
                             </td>
                             <td>{moment(row.Coins.LaunchDate, "YYYYMMDD").fromNow()}</td>
                             <td>{row.Coins.AllTimeVote}</td>

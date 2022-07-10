@@ -17,8 +17,10 @@ const corsOptions = {
     origin: [
         "https://racoins.cc", //Main
         "http://192.168.254.127:3001", //Lan
-        "http://localhost:5000",  //Local
-        "http://localhost:3000",] //Admin
+        "http://localhost:5000",
+        "https://studio.apollographql.com",  //Local
+        "http://localhost:5001",
+        "http://localhost:3001"] //Admin
 };
 
 async function startApolloServer(typeDefs, resolvers) {
