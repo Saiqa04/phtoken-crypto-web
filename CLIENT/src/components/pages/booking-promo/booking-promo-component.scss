@@ -2,11 +2,11 @@
 
 .pb-container {
     margin-top: 70px;
-    background-color: $color-theme-1;
+    background-color: $racoins-color-blue-700;
     border-radius: 15px;
     padding: 20px 20px 50px 20px;
-    color: $font-theme-1;
-    border: 1px solid #202940;
+    color: $racoins-color-white-100;
+    border: 1px solid $racoins-color-blue-400;
     box-shadow: 0 2px 4px 0 #0f131c;
     transition: box-shadow 0.25s;
     
@@ -27,11 +27,11 @@
        div {
             &:first-child {
                 font-size: 16px;
-                color: $color-theme-3;
+                color: $racoins-color-green-100;
             }
             &:last-child {
                 font-size: 13px;
-                color: #de3e59;
+                color: $racoins-color-red-100;
             }
        }
     }
@@ -70,9 +70,9 @@
                 }
                 table {
                     width: 100%;
-                    background-color: white;
+                    background-color: $racoins-color-white-100;
                     border-radius: 8px;
-                    color: $color-theme-1;
+                    color: $racoins-color-blue-400;
                     margin-bottom: 5px;
                     
                     th {
@@ -100,18 +100,18 @@
                     }
                     tr{
                         .end-date_valid {
-                            color: black;
+                            color: $racoins-color-black;
                         }
                         .invalid {
-                            color: red;
+                            color: $racoins-color-red-100;
                         }
                     }
                 }
                 button {
                     &.reserve {
-                        background-color: $color-theme-3;
-                        border: 1px solid $color-theme-3;
-                        color: white;
+                        background-color: $racoins-color-green-100;
+                        border: 1px solid $racoins-color-green-100;
+                        color: $racoins-color-white-100;
                         width: 100%;
                         margin: 0px auto;
                     }
@@ -126,10 +126,10 @@
             }
            table {
                width: 90%;
-               background-color: black;
-               border: 1px solid $color-theme-2;
+               background-color: $racoins-color-black;
+               border: 1px solid $racoins-color-blue-100;
                border-radius: 8px;
-               color: white;
+               color: $racoins-color-white-100;
                margin: 10px auto;
                padding: 10px;
                font-size: 15px;
@@ -176,9 +176,9 @@
             .calendar {
                
                 .start_end-date {
-                    background-color: $color-theme-3;
-                    border: 1px solid $color-theme-3;
-                    color: white;
+                    background-color: $racoins-color-green-100;
+                    border: 1px solid $racoins-color-green-100;
+                    color: $racoins-color-white-100;
                     width: 100%;
                     margin: 2px auto;
                 }
@@ -189,15 +189,15 @@
                 margin-top: 10px;
                 button {
                     width: 50%;
-                    background-color: white;
-                    border: 1px solid $header-color;
+                    background-color: $racoins-color-white-100;
+                    border: 1px solid $racoins-color-blue-700;
                     &:last-child {
                         width: 100% !important;
                     }
 
                     &.active {
-                        background-color: $color-theme-2;
-                        color: white;
+                        background-color: $racoins-color-blue-100;
+                        color: $racoins-color-white-100;
                     }
                 }
             }
@@ -213,7 +213,7 @@
             font-size: 14px;
 
             span {
-                color: $color-theme-2;
+                color: $racoins-color-blue-100;
                 cursor: pointer;
             }
         }
@@ -230,21 +230,21 @@
                 margin-left: 1px;
                 outline: none;
                 border-radius: 5px;
-                border: 1px solid $header-color;
+                border: 1px solid $racoins-color-blue-700;
             }
     
             button {
-                background-color: white;
-                border: 1px solid $header-color;
+                background-color: $racoins-color-white-100;
+                border: 1px solid $racoins-color-blue-700;
                 border-radius: 5px;
              }
         }
         table {
             width: 100%;
-            border: 1px solid $color-theme-2;
+            border: 1px solid $racoins-color-blue-100;
             font-size: 13px;
             th {
-                background-color: black;
+                background-color: $racoins-color-black;
             }
             th,td {
                 font-weight: 400;
@@ -286,10 +286,10 @@
             }
             table {
                 width: 100%;
-                background-color: black;
-                border: 1px solid $color-theme-2;
+                background-color: $racoins-color-black;
+                border: 1px solid $racoins-color-blue-100;
                 border-radius: 8px;
-                color: white;
+                color: $racoins-color-white-100;
                 margin: 10px auto;
                 padding: 10px;
                 font-size: 15px;

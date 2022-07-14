@@ -39,22 +39,22 @@ module.exports = {
                 use: {
                     loader: 'babel-loader'
                 }
-            }, {
-                test: /\.css$/i,
-                use: ["style-loader", "css-loader"]
-              },
+            },
             {
-                test: /\.scss$/,
+                test: /\.(css|scss)$/,
                 use: [
                     devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    "css-loader",
                     {
-                        loader: "sass-loader",
+                        loader: "css-loader",
                         options: {
-                            implementation: require("sass"),
+                            /* importLoaders: 2,
+                            modules: {
+                                localIdentName: "[hash:base64:5]"
+                            }, */
                             sourceMap: devMode
                         },
                     },
+                    "sass-loader"
                 ],
             },
             {
@@ -86,8 +86,8 @@ module.exports = {
             filename: './index.html'
         }),
         new MiniCssExtractPlugin({
-             filename: devMode ? 'styles/[name].css' : 'styles/[name].[hash].css',
-             chunkFilename: devMode ? 'styles/[id].css' : 'styles/[id].[hash].css'
+             filename: 'styles/[name].module.css',
+             chunkFilename: 'styles/[id].module.css'
         })
     ],
     devServer: {

@@ -1,116 +1,105 @@
 @import '../../styles/variables';
 
 .coin-page {
-    .promoted-label {
-        color: $font-theme-1;
-        font-weight: 600;
-        text-transform: uppercase;
+    .top-coin-table-nav {
+        margin-top: 15px;
+        padding: 6px 12px;
         font-size: 12px;
+        font-weight: 500;
+        color: $racoins-color-white-100;
+        background-color: $racoins-color-blue-400;
+        border: 1px solid $racoins-color-green-100;
+        cursor: pointer;
+
+        &:hover, &.active {
+            background-color: $racoins-color-green-100;
+        }
+        &:nth-child(2){
+            border-radius: 5px 0px 0px 5px;
+        }
+        &:nth-child(3){
+            border-radius: 0px 5px 5px 0px;
+        }
     }
-    table {
-        background-color: $color-theme-1;
-        border: 1px solid $color-theme-1;
-        border-radius: 15px;
+    .table {
+        background-color: $racoins-color-blue-700;
         width: 100%;
+        border-radius: 5px;
         border-collapse: collapse;
-        margin-top: 10px;
         white-space: nowrap;
+        margin-top: 15px;
         overflow: hidden;
+        
+        tr {
+            border-bottom: 1px solid $racoins-color-blue-800;
+        }
 
         thead {
-            background-color: $header-color;
-        }
-        tbody {
+            background-color: $racoins-color-blue-700;
             tr {
-                &:hover {
-                    background-color: #1a2233;
+                padding: 18px 14px;
+            }
+            .table-top-label {
+                &.promoted-section {
+                    background-color: $racoins-color-black;
+                }
+
+                th {
+                    text-align: left;
+                    padding: 12px 14px;
+                    color: $racoins-color-white-100;
+
+                    img {
+                        float: left;
+                        width: 18px;
+                        height: 18px;
+                        margin-right: 6px;
+                    }
                 }
             }
         }
+       
         th, td {
             .coin-name {
                 text-decoration: none;
-                color: $font-theme-1;
+                color: $racoins-color-white-100;
             }
-
+            //NAME
             &:nth-child(3){
                 text-align: left !important;
                 padding: 0;
             }
+            //ICON
             &:nth-child(2) {
                 padding: 0;
             }
-               //CHAIN
+               //PRICE
             &:nth-child(5){
-                text-align: left !important;
+                text-align: center !important;
                 padding: 0;
             }
         }
+
         th {
-            color: #525a70;
+            color: $racoins-color-gray-400;
             text-align: center;
-            padding: 18px 14px;
+            padding: 12px 14px;
             text-transform: uppercase;
             font-size: 12px;
             font-weight: 400;
-
-             //CHAIN
-             &:nth-child(5){
-                padding: 15px;
-            }
         }
-
         td {
             text-align: center;
-            padding: 22px;
+            padding: 18px 14px;
             font-size: 12px;
-            color: $font-theme-1;
-            border-bottom: 1px solid #1d2436;
+            color: $racoins-color-white-100;
 
-            //ID
-            &:nth-child(1) {
-                width: 4%;
+            .platforms {
+                a {
+                    width: 22px;
+                    margin-right: 2px;
+                }
             }
-            //LOGO
-            &:nth-child(2) {
-                width: 3%;
-            }
-            //NAME
-            &:nth-child(3) {
-                width: 14%;
-            }
-            //SYMBOL         //CHAIN
-            &:nth-child(4),  &:nth-child(5) {
-                width: 8%;
-            }
-            //PRICE          
-            &:nth-child(6) {
-                width: 14%;
-            }
-
-            //24H Change
-            &:nth-child(7) {
-                width: 6%;
-            }
-
-            //MARKETCAP      
-            &:nth-child(8) {
-                width: 14%;
-            }
-            //LAUNCH
-            &:nth-child(9) {
-                width: 10%;
-            }
-            //UPVOTES
-            &:nth-child(10) {
-                width: 8%;
-            }
-
-            //VOTE
-            &:nth-child(11) {
-                width: 12%;
-            }
-
 
             .logoIcon {
                 height: 32px;
@@ -118,24 +107,25 @@
                 margin-right: 5px;
                 border-radius: 10px;
             }
-            .logoChain {
-                margin-right: 5px;
-                max-height: 21px;
-                max-width: 21px;
-            }
-            .chain {
-               margin-top: 2px;
-            }
-
+        
             .row-name-flex {
                 display: flex;
                 flex-direction: row;
+
+                .logoChain {
+                    margin-right: 5px;
+                    max-height: 18px;
+                    max-width: 18px;
+                }
+                .chain {
+                   margin-top: 2px;
+                }
             }
 
 
             .audited {
                 font-size: 9px;
-                background-color: $color-theme-2;
+                background-color: $racoins-color-blue-100;
                 padding: 3px;
                 color: #fff;
                 border-radius: 3px;
@@ -147,7 +137,7 @@
             }
             .doxxed {
                 font-size: 9px;
-                background-color: $color-theme-3;
+                background-color: $racoins-color-green-100;
                 padding: 3px;
                 color: #fff;
                 border-radius: 3px;
@@ -164,7 +154,7 @@
             }
 
             .price-up {
-                color: $color-theme-3;
+                color: $racoins-color-green-100;
             }
 
             .price-down {
@@ -174,115 +164,113 @@
             .button {
                 padding: 7px 20px;
                 border-radius: 5px;
-                border: 1px solid $color-theme-3;
+                border: 1px solid $racoins-color-green-100;
                 font-size: 12px;
                 transition: 0.3s;
                 background-color: transparent;
                 text-decoration: none;
-                color: $color-theme-3;
+                color: $racoins-color-green-100;
                 cursor: pointer;
                 white-space: nowrap;
                 overflow: hidden;
                 box-shadow: 1px 1px 8px 0px rgb(21, 100, 54);
 
                 &:hover, &.voted {
-                    background-color: $color-theme-3;
+                    background-color: $racoins-color-green-100;
                     color: white;    
                 }
             }
         }
     }
-    .loadMore {
-        color: white;
-        cursor: pointer;
-        background-color: transparent;
-        outline: none;
-        padding: 10px 15px;
-        border-radius: 25px;
-        margin-top: 50px;
-        border: 1px solid $color-theme-3;
-        min-width: 130px;
-        max-height: 42px;
-        box-shadow: 2px 2px 8px 2px rgb(21, 100, 54);
-
-        &:hover {    
-             background-color: $color-theme-3;
-        }
-    }
-
-    @media screen and (max-width: 1100px) {
-        table {
-            th,td {
-                // SYMBOL
-                &:nth-child(4) {
-                    display: none;
-                }
+    
+    .promoted-coin-table, .top-coin-table {
+        td,th {
+            &:nth-child(4), &:nth-child(5), &:last-child{
+                text-align: left;
+                padding-left: 10px;
             }
         }
+        .row-name-flex {
+           .chain-wrapper {
+              text-align: center;
+              background-color: $racoins-color-teal-100;
+              border-radius: 15px;
+              padding: 3px 6px;
+              max-width: 70px;
+              min-width: 45px;
+              .logoChain {
+                float: left;
+                margin-right: 3px;
+              }
+           }
+        }
     }
+    .promoted-coin-table {
+       td {
+            background-color: $racoins-color-blue-400;
+       }
+       tr {
+            &:not(:first-child){
+                background-color: $racoins-color-blue-400;
+            }
+           
+       }
+    }
+    .show-more {
+        color: $racoins-color-gray-400;
+        text-align: center;
+        border-radius: 0px 0px 5px 5px;
+        background-color: $racoins-color-blue-700;
+        padding: 16px;
+        font-size: 13px;
+            .show-more-btn, .promote-button {
+                cursor: pointer;
+                border: 0;
+                background-color: transparent;
+                color: $racoins-color-orange-100;
 
+                i {
+                    margin-right: 10px;
+                }
+            }
+            .promote-button {
+                color: $racoins-color-blue-100;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+    }
+    @media screen and (max-width: 1380px) {
+        .top-coin-table-nav {
+           &:nth-child(2){
+            margin-left: 10px;
+           }
+        }
+    }
+    @media screen and (max-width: 1200px) {
+        .table-container {
+            overflow-y: auto;
+        }
+    }
+    @media screen and (min-width: 980px) {
+
+    }
     @media screen and (max-width: 980px) {
-        table {
-            th,td {
-                //24H Change
-                &:nth-child(7) {
-                    display: none;
-                }
-            }
-        }
-    }
-    @media screen and (max-width: 880px) {
-        table {
-            th,td {
-                //Launch
-                &:nth-child(9) {
-                    display: none;
-                }
-            }
-        }
-    }
-    @media screen and (max-width: 780px) {
-        table {
-            th,td {
-                //CHAIN
-                &:nth-child(5) {
-                    display: none;
-                }
-            }
-        }
-    }
-    @media screen and (max-width: 680px) {
-        .promoted-label {
-            margin-left: 5px;
-        }
-        table {
-            th,td {
-                //PRICE
-                &:nth-child(6) {
-                    display: none;
+        .table-container {    
+            .table {
+                overflow-y: inherit;
+                th,td {
+                    &:nth-child(3) {
+                        background-color: $racoins-color-blue-500;
+                        position: sticky;
+                        left: 0;
+                        z-index: 5;
+                        padding: 0px 10px;
+                    }
                 }
             }
         }
     }
 
-    @media screen and (max-width: 580px) {
-        table {
-            th,td {
-                //UPVOTES
-                &:nth-child(10) {
-                    display: none;
-                }
-            }
-        }
-    }
-    @media screen and (max-width: 480px) {
-        table {
-            th,td {
-                //VOTE
-                &:nth-child(11) {
-                    display: none;
-                }
-            }
-        }
-    }
 }

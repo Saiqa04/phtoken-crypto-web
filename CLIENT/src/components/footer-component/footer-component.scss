@@ -1,8 +1,8 @@
 @import '../../styles/variables';
 
 .footer-container {
-    margin-top: 50px;
-    background-color: $header-color;
+    margin-top: 150px;
+    background-color: $racoins-color-blue-700;
     height: auto;
 
     .content {
@@ -38,7 +38,7 @@
             a {
                 text-decoration: none;
                 font-size: 14px;
-                color: #525a70;
+                color: $racoins-color-gray-400;
             }
 
 

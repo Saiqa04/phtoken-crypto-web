@@ -73,8 +73,6 @@ export default function Header() {
             <div className='header-wrapper'>
                 <div className="logo">
                     <a style={{float: 'left'}} href='/'><img src={logo}/></a>
-                    <span style={{fontSize: 9, lineHeight: 7, color: '#fff',
-                     backgroundColor: '#c26732', borderRadius: 2, padding: '0px 2px'}}>Beta</span>
                 </div>
                 <div className='responsive-wide'>
                     <div className='search-box'>
@@ -157,16 +155,10 @@ export default function Header() {
                             </div>
                             <div className='coin-nav'>
                                 <div className='nav-buttons'>
-                                    <NavLink to="/todays-top">Today's Top</NavLink>
+                                    <NavLink to="/">All Coins</NavLink>
                                 </div>
                                 <div className='nav-buttons'>
                                     <NavLink to="/new-coins">New Coins</NavLink>
-                                </div>
-                                <div className='nav-buttons'>
-                                    <NavLink to="/all-coins">All Coins</NavLink>
-                                </div>
-                                <div className='nav-buttons'>
-                                    <NavLink to="/all-time-best">All time best</NavLink>
                                 </div>
                                 <div className='nav-buttons'>
                                     <NavLink to="/doxxed">Doxxed</NavLink>

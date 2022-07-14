@@ -308,7 +308,7 @@ export default function PromoteAndBooking(){
                         <table>
                             <tbody>
                                 <tr>
-                                    <td>Rotating Banner (300x80px)
+                                    <td>Rotating Banner (300x100px)
                                     </td>
                                     <td>75$ / Day</td>
                                 </tr>
@@ -317,7 +317,7 @@ export default function PromoteAndBooking(){
                                     <td>100$ / Day</td>
                                 </tr>
                                 <tr>
-                                    <td>Fixed Banner (440x100px)</td>
+                                    <td>Fixed Banner (440x120px)</td>
                                     <td>200$ / Day</td>
                                 </tr>
                             </tbody>

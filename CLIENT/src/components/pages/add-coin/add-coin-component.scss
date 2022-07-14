@@ -2,14 +2,12 @@
 
 .add-coin-container {
     color: white;
-    background-color: $color-theme-1;
+    background-color: $racoins-color-blue-700;
     padding: 20px;
     max-width: 930px;
     margin: 0 auto;
     border-radius: 15px;
-    border: 1px solid #202940;
-    box-shadow: 0 2px 4px 0 #0f131c;
-    transition: box-shadow 0.25s;
+    border: 1px solid $racoins-color-blue-400;
     margin-bottom: 50px;  
     
     form {
@@ -28,25 +26,25 @@
 
                 span {
                     font-size: 11px;
-                    color: red;
+                    color: $racoins-color-red-100;
                 }
             }
             input, textarea, select {
                 margin-top: 5px;
                 margin-bottom: 15px;
-                background-color: $color-theme-1;
-                border: 1px solid #202940;
+                background-color: $racoins-color-blue-700;
+                border: 1px solid $racoins-color-blue-400;
                 padding: 10px 8px;
                 border-radius: 5px;
-                color: white;
+                color: $racoins-color-white-100;
                 font-size: 13px;
                 resize: vertical;
                 &:focus {
-                    outline: 1px solid #525161;
+                    outline: 1px solid  $racoins-color-gray-400;
                 }
 
                 option {
-                    color: white;
+                    color: $racoins-color-white-100;
                 }
 
             
@@ -77,14 +75,14 @@
         margin-top: 40px;
         margin-bottom: 20px;
        button {
-            background-color: $color-theme-2;
+            background-color: $racoins-color-blue-100;
             padding: 10px 15px;
             border-radius: 5px;
-            border: 1px solid #242322;
+            border: 1px solid $racoins-color-blue-100;
             width: 130px;
             max-height: 40px;
             cursor: pointer;
-            color: $font-theme-1;
+            color: $racoins-color-white-100;
 
             &:hover {
                 text-decoration: underline;

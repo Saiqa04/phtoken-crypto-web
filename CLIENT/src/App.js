@@ -6,8 +6,7 @@ import NavPage from './components/nav-component/nav-component';
 import { Route, Routes } from 'react-router-dom';
 import AllCoins from '../src/components/pages/all-coins/all-coins-component';
 import CoinDetails from '../src/components/pages/coin-details/coin-details-component';
-import AtbCoins from '../src/components/pages/all-time-best/all-time-best-component';
-import TodaysTop from '../src/components/pages/todays-top/todays-top-component';
+import TopCoins from './components/pages/top-coins/top-coins-component';
 import NewCoins from '../src/components/pages/new-coins/new-coins-component';
 import DoxxedCoins from '../src/components/pages/doxxed-coins/doxxed-coins-component';
 import PresaleCoins from '../src/components/pages/presale-coins/presale-coins-component';
@@ -73,26 +72,14 @@ export default function App() {
                                     </div>
                                     <div className="promoted-coin-container">
                                         <PromotedCoin />
+                                        <TopCoins />
                                     </div>
                                     <div className="navpage-container">
                                         <NavPage />
                                     </div>
-                                    <TodaysTop />
-                                </>
-                            }>
-                            </Route>
-                            <Route exact path="/todays-top" element={
-                                <>
-                                    <div className="ads-container">
-                                        <AdListing />
+                                    <div>
+                                        <AllCoins />
                                     </div>
-                                    <div className="promoted-coin-container">
-                                        <PromotedCoin />
-                                    </div>
-                                    <div className="navpage-container">
-                                        <NavPage />
-                                    </div>
-                                    <TodaysTop />
                                 </>
                             }>
                             </Route>
@@ -103,6 +90,7 @@ export default function App() {
                                     </div>
                                     <div className="promoted-coin-container">
                                         <PromotedCoin />
+                                        <TopCoins />
                                     </div>
                                     <div className="navpage-container">
                                         <NavPage />
@@ -118,6 +106,7 @@ export default function App() {
                                     </div>
                                     <div className="promoted-coin-container">
                                         <PromotedCoin />
+                                        <TopCoins />
                                     </div>
                                     <div className="navpage-container">
                                         <NavPage />
@@ -133,11 +122,11 @@ export default function App() {
                                     </div>
                                     <div className="promoted-coin-container">
                                         <PromotedCoin />
+                                        <TopCoins />
                                     </div>
                                     <div className="navpage-container">
                                         <NavPage />
                                     </div>
-                                    <AtbCoins />
                                 </>
                             }>
                             </Route>
@@ -148,6 +137,7 @@ export default function App() {
                                     </div>
                                     <div className="promoted-coin-container">
                                         <PromotedCoin />
+                                        <TopCoins />
                                     </div>
                                     <div className="navpage-container">
                                         <NavPage />
@@ -163,6 +153,7 @@ export default function App() {
                                     </div>
                                     <div className="promoted-coin-container">
                                         <PromotedCoin />
+                                        <TopCoins />
                                     </div>
                                     <div className="navpage-container">
                                         <NavPage />

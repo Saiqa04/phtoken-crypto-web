@@ -9,12 +9,10 @@
     CoinByNameOrAddress(Name: String, ContractAddress: String): [Coin],
     ReservationByNumber(Number: String!): Reservation
     BannerAds: [BannerAd]
-    TodaysTop(limit: Int!, offset: Int!): [Coin]
+    TopCoins(limit: Int!, offset: Int!, query: String!): [Coin]
     NewCoins(limit: Int!, offset: Int!): [Coin]
-    AllTimeBest(limit: Int!, offset: Int!): [Coin]
     Doxxed(limit: Int!, offset: Int!): [Coin]
     Presale(limit: Int!, offset: Int!): [Coin]
-    Login(username: String!, password: String!): User
     Chains: [Chain] 
     #ADMIN
     VoteLog: [Vote]
@@ -93,13 +91,6 @@ type Transaction {
    updatedAt: Date
 }
 
-type User {
-   UserID: ID!
-   Username: String
-   Password: String
-   UserType: String
-   IsLogin: Boolean
-}
 
 type BannerAd {
    id: ID!
@@ -156,9 +147,6 @@ type BannerAd {
       TxnHash: String,
       Memo: String
     ): String
-    
-    updateCoinStatus(CoinID: Int 
-    Status: String): String
 
     updateCoinInfo(
       CoinID: Int!,

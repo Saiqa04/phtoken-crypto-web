@@ -10,24 +10,17 @@ function Footer (){
             <div className='footer-container'>
                 <div className='content'>
                     <div className='logo'>
-                        <a style={{float: 'left'}} href='/'><img src={logo}/></a>
-                        <span style={{fontSize: 9, lineHeight: 7, color: '#fff',
-                                    backgroundColor: '#c26732', borderRadius: 2, padding: '0px 2px'}}>Beta</span>
+                        <a href='/'><img src={logo}/></a>
+        
                     </div>
                     <div className='links'>
                         <div className='coin-list'>
                             <h4>Coin Lists</h4>
                             <div>
-                                 <NavLink to="/">Today's Top</NavLink>
-                            </div>
-                            <div>
-                                <NavLink to="/new-coins">New Coins</NavLink>
-                            </div>
-                            <div>
                                 <NavLink to="/all-coins">All Coins</NavLink>
                             </div>
                             <div>
-                                <NavLink to="/all-time-best">All Time Best</NavLink>
+                                <NavLink to="/new-coins">New Coins</NavLink>
                             </div>
                             <div>
                                 <NavLink to="/doxxed">Doxxed Coins</NavLink>

@@ -6,7 +6,7 @@
 
 body {
     margin: 0;
-    background-color: $body-color;
+    background-color: $racoins-color-blue-800;
     box-sizing: border-box;
     overflow-y: scroll;
     scrollbar-width: none; /* Firefox */
@@ -25,28 +25,4 @@ body::-webkit-scrollbar { /* WebKit */
 .App-container, .header-container .container {
     max-width: 1380px !important;
     margin: auto;
-
-    @media screen and (max-width: 1380px) {
-        max-width: 1270px !important;
-    }
-
-    @media screen and (max-width: 1270px) {
-        max-width: 1170px !important;
-    }
-
-    @media screen and (max-width: 1170px) {
-        max-width: 1070px !important;
-    }
-
-    @media screen and (max-width: 1070px) {
-        max-width: 970px !important;
-    }
-
-    @media screen and (max-width: 970px) {
-        max-width: 870px !important;
-    }
-
-    @media screen and (max-width: 870px) {
-        width: 100% !important;
-    }
 }

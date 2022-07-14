@@ -210,10 +210,10 @@ function CoinDetails() {
                                     </Box> : data ? 
                             <div>
                                 <div>
-                                    <a target="_blank" href={data.CoinByID.Telegram} className="telegram"><i className="fa-brands fa-telegram"></i>&nbsp;Telegram</a>
-                                    <a target="_blank" href={data.CoinByID.Twitter} className="twitter"><i className="fa-brands fa-twitter"></i>&nbsp;Twitter</a>
-                                    <a target="_blank" href={data.CoinByID.Discord} className="discord"><i className="fa-brands fa-discord"></i>&nbsp;Discord</a>
-                                    <a target="_blank" href={data.CoinByID.Website} className="website"><i className="fa-solid fa-globe"></i>&nbsp;Website</a>
+                                    {data.CoinByID.Telegram !== "" ? <a target="_blank" href={data.CoinByID.Telegram} className="telegram"><i className="fa-brands fa-telegram"></i>&nbsp;Telegram</a> : ""}
+                                    {data.CoinByID.Twitter !== "" ?  <a target="_blank" href={data.CoinByID.Twitter} className="twitter"><i className="fa-brands fa-twitter"></i>&nbsp;Twitter</a> : ""}
+                                    {data.CoinByID.Discord !== "" ? <a target="_blank" href={data.CoinByID.Discord} className="discord"><i className="fa-brands fa-discord"></i>&nbsp;Discord</a> : ""}
+                                    {data.CoinByID.Website !== "" ? <a target="_blank" href={data.CoinByID.Website} className="website"><i className="fa-solid fa-globe"></i>&nbsp;Website</a> : ""}
                                 </div>
                             </div>
                         :  <div></div>

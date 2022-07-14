@@ -165,9 +165,9 @@ export default function AddCoin(){
                         <label>Launch Date (YYYY-MM-DD) <span>Required</span></label>
                         <input type="text" name='launchDate' value={values.launchDate} onChange={handleInputChange} placeholder=''/>
 
-                        <h3>Contact Details<br/>
-                        <span style={{fontSize:12, padding: 0, fontWeight: 300}}>You will be contacted through email provided</span> </h3>
-                        <label>Email <span>Required</span></label>
+                        <h3>Contact Info<br/>
+                        <span style={{fontSize:12, padding: 0, fontWeight: 300}}>For later changes, Please provide the following.</span> </h3>
+                        <label>Email / Telegram <span>Required</span></label>
                         <input type="text" name='contactEmail' value={values.contactEmail} onChange={handleInputChange} placeholder=''/>
                     </div>
                     <div className='links'>

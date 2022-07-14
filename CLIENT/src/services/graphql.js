@@ -28,7 +28,6 @@ export const GET_PROMOTED_COINS = gql`
         }
     }
 `;
-
 export const GET_ALL_ADDRESSES = gql`
     query ContractAddresses($limit: Int!) {
         ContractAddresses(limit: $limit) {
@@ -38,7 +37,6 @@ export const GET_ALL_ADDRESSES = gql`
         }
     }
 `;
-
 export const GET_COINS = gql`
     query GetCoins($offset: Int!){
         Coins(limit: 20, offset: $offset){
@@ -63,9 +61,9 @@ export const GET_COINS = gql`
         }
     }
 `;
-export const GET_TODAYS_TOP = gql`
-    query GetTodaysTop($offset: Int!){
-        TodaysTop(limit: 20, offset: $offset){
+export const GET_TOP_COINS = gql`
+    query GetTopCoins($offset: Int!, $query: String!){
+        TopCoins(limit: 10, offset: $offset, query: $query){
             CoinID
             Name
             Chain
@@ -90,30 +88,6 @@ export const GET_TODAYS_TOP = gql`
 export const GET_NEW_COINS = gql`
     query GetNewCoins($offset: Int!){
         NewCoins(limit: 20, offset: $offset){
-            CoinID
-            Name
-            Chain
-            Symbol
-            ContractAddress
-            LaunchDate
-            IsPresale
-            IsDoxxed
-            Description
-            AuditLink
-            Website
-            Telegram
-            Twitter
-            Discord
-            LogoLink
-            VoteToday
-            AllTimeVote
-            IsUpvoted
-        }
-    }
-`;
-export const GET_ALL_TIME_BEST_COINS = gql`
-    query GetAllTimeBestCoins($offset: Int!){
-        AllTimeBest(limit: 20, offset: $offset){
             CoinID
             Name
             Chain
@@ -210,7 +184,6 @@ export const GET_COIN_BY_PK = gql`
         }
     }
 `;
-
 export const GET_COIN_BY_NAME_OR_ADDRESS = gql`
    query GetCoinByNameOrAddress($name: String, $contractAddress: String) {
         CoinByNameOrAddress(Name: $name, ContractAddress: $contractAddress) {
@@ -262,17 +235,6 @@ export const GET_RESERVATION_BY_NUMBER = gql`
         }
     }
 `;
-export const LOGIN = gql`
-    query Login($username: String!, $password: String!) {
-        Login(username: $username, password: $password) {
-            UserID
-            Username
-            Password
-            UserType
-            IsLogin
-        }
-    }
-`;
 export const GET_BANNER_ADS = gql`
     query GetBannerAds {
         BannerAds {
@@ -290,20 +252,16 @@ export const GET_BANNER_ADS = gql`
         }
     }
 `;
-
-
 export const VOTE_COIN = gql`
    mutation voteCoin($coinId: ID!) {
         voteCoin(CoinID: $coinId)
     }
 `;
-
 export const ADD_COIN = gql`
     mutation CreateCoin($name: String!, $symbol: String!, $chain: String!, $contractAddress: String!, $description: String!, $isPresale: Boolean!, $launchDate: Date!, $telegram: String!, $website: String, $twitter: String, $discord: String, $audit: String, $logo: String!, $contactEmail: String!, $status: String!) {
         createCoin(Name: $name, Symbol: $symbol, Chain: $chain, ContractAddress: $contractAddress, Description: $description, IsPresale: $isPresale, LaunchDate: $launchDate, Telegram: $telegram, Website: $website, Twitter: $twitter, Discord: $discord, AuditLink: $audit, LogoLink: $logo, ContactEmail:$contactEmail, Status: $status)
     }
 `;
- 
 export const ADD_RESERVATION = gql`
     mutation CreateReservation($adType: String, $startDate: Date, $endDate: Date, $telegram: String, $amountToPay: Float, $discount: Float, $paymentStatus: String, $number: String!) {
         createReservation(AdType: $adType, StartDate: $startDate, EndDate: $endDate, Telegram: $telegram, AmountToPay: $amountToPay, Discount: $discount, PaymentStatus: $paymentStatus, Number: $number)

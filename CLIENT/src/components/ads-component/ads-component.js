@@ -5,8 +5,7 @@ import { Autoplay } from "swiper";
 import useWindowDimensions from '../../utils/ScreenDimention';
 import {GET_BANNER_ADS} from '../../services/graphql';
 import { useQuery } from '@apollo/client';
-import {telegramWithColor, pancake, websiteWWW} from '../../utils/SvgIcons';
-
+import {telegramColored, twitterColored, chromeColored, discordColored} from '../../utils/SvgIcons';
 require('./ads-component.scss');
 
 export default function AdListing(){
@@ -55,9 +54,9 @@ export default function AdListing(){
                         <div className='banner-info'>
                             <span>{item.BannerName}</span>
                             <div className='links'>
-                                <a href={item.Swap} target="_blank">{pancake}</a>
-                                <a href={item.Website} target="_blank">{websiteWWW}</a>
-                                <a href={item.Telegram} target="_blank">{telegramWithColor}</a>
+                                <a href={item.Swap} target="_blank">{twitterColored}</a>
+                                <a href={item.Website} target="_blank">{chromeColored}</a>
+                                <a href={item.Telegram} target="_blank">{telegramColored}</a>
                             </div>
                             <a className='join-button' href={item.Telegram} target="_blank">Join us!</a>
                         </div>
@@ -81,9 +80,9 @@ export default function AdListing(){
                             <div className='box-coin-body'>
                                 <img src={item.ImageLocation}/>
                                 <div className='links'>
-                                    <a href={item.Telegram} target="_blank">{telegramWithColor}</a>   
-                                    <a href={item.Swap} target="_blank">{pancake}</a>
-                                    <a href={item.Website} target="_blank">{websiteWWW}</a>
+                                    <a href={item.Swap} target="_blank">{twitterColored}</a>
+                                    <a href={item.Website} target="_blank">{chromeColored}</a>
+                                    <a href={item.Telegram} target="_blank">{telegramColored}</a>
                                 </div>
                             </div>
                             <p className='description'><span className='name'>{item.BannerName}&nbsp;</span>{item.Description}</p>

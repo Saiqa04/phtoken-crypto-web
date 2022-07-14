@@ -21,7 +21,7 @@ import {ErrorHandler} from './helpers/ErrorHandler'
 
   if(process.env.NODE_ENV === development){
     var client = new ApolloClient({
-      uri: 'http://localhost:5000/api/graphql',
+      uri: 'http://192.168.254.127:5000/api/graphql',
       cache: new InMemoryCache({
         typePolicies: {
           Coin: {

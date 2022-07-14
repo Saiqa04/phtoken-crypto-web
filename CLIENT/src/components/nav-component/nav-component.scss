@@ -1,24 +1,24 @@
 @import '../../styles/variables';
 
 .navbar-container {
-    display: flex;
     margin-top: 50px;
     .navlinks {
         height: 40px;
         a {
             text-decoration: none;
-            color: $font-theme-1;
+            color: $racoins-color-white-100;
+            background-color: $racoins-color-blue-400;
             font-size: 12px;
             font-weight: 500;
-            padding: 10px 8px;
+            padding: 10px 15px;
             margin-right: 10px;
             line-height: 40px;
             border-radius: 5px;
 
             &:hover, &.active {
-                background-color: rgb(255, 94, 0);
+                background-color: $racoins-color-orange-100;
                 i {
-                    color: $font-theme-1;
+                    color: $racoins-color-white-100;
                 }
             }
         }  
@@ -30,8 +30,19 @@
 
     .right {
         float: right;
+        margin-top: 15px;
+        font-size: 12px;
+        color: $racoins-color-gray-400;
     }
 
+    @media screen and (max-width: 1380px) {
+        margin-left: 10px;
+    }
+    @media screen and (max-width: 880px) {
+        .right {
+            display: none;
+        }
+    }
     @media screen and (max-width: 745px) {
         .navlinks {
             a {
@@ -42,16 +53,20 @@
     @media screen and (max-width: 645px) {
         .navlinks {
             a {
+                margin-right: 5px;
                 font-size: 10px;
                 line-height: 40px;
-                border-radius: 0;
             }
         }
     }
 
     @media screen and (max-width: 580px) {
+        
+        margin-top: 10px;
         .navlinks {
-            display: none;
+            a {
+                padding: 10px 10px;
+            }
         }
     }
 
