@@ -8,7 +8,7 @@ export const FetchCoinPrice = ({data}) => {
     const {marketData} = useMarketDataContext();
 
     const result = marketData?.filter((e) => {
-        if(e.address === data.ContractAddress){
+        if(e.address === data.ContractAddress.toLowerCase()){
            return e;
         }
     })
@@ -20,7 +20,7 @@ export const FetchCoinPrice = ({data}) => {
             prefix={'$'}
             thousandSeparator={true}
             displayType={'text'}
-            decimalScale={10}
+            decimalScale={result[0].priceUsd.toFixed(2) > 0 ? 2 : 10}
         />
     }
 }
@@ -30,7 +30,7 @@ export const FetchCoin24hChange = ({data}) => {
     const {marketData} = useMarketDataContext();
 
     const result = marketData?.filter((e) => {
-        if(e.address === data.ContractAddress){
+        if(e.address === data.ContractAddress.toLowerCase()){
            return e;
         }
     })
@@ -49,7 +49,7 @@ export const FetchCoinMarketCap = ({data}) => {
     const {marketData} = useMarketDataContext();
 
     const result = marketData?.filter((e) => {
-        if(e.address === data.ContractAddress){
+        if(e.address === data.ContractAddress.toLowerCase()){
            return e;
         }
     })
@@ -73,7 +73,7 @@ export const FetchLiquidity = ({data}) => {
     const {marketData} = useMarketDataContext();
 
     const result = marketData?.filter((e) => {
-        if(e.address === data.ContractAddress){
+        if(e.address === data.ContractAddress.toLowerCase()){
            return e;
         }
     })
