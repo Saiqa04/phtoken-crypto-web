@@ -1,10 +1,11 @@
 import { useMutation } from '@apollo/client';;
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import {ADD_COIN} from '../../../services/graphql';
 import { CircularProgress } from '@mui/material';
 import { useChainContext } from '../../../context/ChainContext';
 import MessageSnackBar from '../../../popups/MessageSnackBar';
+import { PageTitle } from '../../../helpers/PageTitleHelper';
 
 require('./add-coin-component.scss');
 
@@ -134,6 +135,14 @@ export default function AddCoin(){
            }
        })
     }
+
+
+    useEffect(() => {
+        PageTitle({
+            title: `Submit your token - Racoins.cc`,
+            description: `Finding new crypto gems made easy with Racoins.cc`
+        })
+    },[])
 
     return (
         <div className="add-coin-container">

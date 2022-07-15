@@ -14,6 +14,7 @@ import dextoolLogo from '../../../../public/icons/dextools-logo.png';
 import pancakeswapLogo from '../../../../public/icons/pancakeswap-cake-logo.png';
 import uniswapLogo from '../../../../public/icons/uniswap-uni-logo.png';
 import { FetchCoin24hChange, FetchCoinMarketCap, FetchCoinPrice, FetchLiquidity } from '../../../helpers/CoinDataHelper';
+import { PageTitle } from '../../../helpers/PageTitleHelper';
 require('./coin-details-component.scss');
 
 
@@ -95,6 +96,15 @@ function CoinDetails() {
             <Helmet><script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script></Helmet>
         </>
     )
+
+    useEffect(() => {
+        if(data){
+            PageTitle({
+                title: data?.CoinByID.Name +` (${data?.CoinByID.Symbol})` + " - Racoins.cc",
+                description: data?.CoinByID.Name + ` has ${data?.CoinByID.VoteToday} today. Check this project now.`
+            })
+        }
+    },[data])
 
     return (
         <div className='coin-details-container'>

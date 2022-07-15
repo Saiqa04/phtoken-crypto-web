@@ -14,6 +14,7 @@ import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import Stack from '@mui/material/Stack';
 import MessageSnackBar from '../../../popups/MessageSnackBar';
+import { PageTitle } from '../../../helpers/PageTitleHelper';
 
 require('./booking-promo-component.scss');
 require('../../../styles/calendar.scss')
@@ -115,6 +116,11 @@ export default function PromoteAndBooking(){
     };
 
     useEffect(() => {
+        PageTitle({
+            title: `Promote your coin - Racoins.cc`,
+            description: `Finding new crypto gems made easy with Racoins.cc`
+        })
+
         setStartDate(new Date(currDate));
         setEndDate(new Date(currDate));
         setButtonCalTypeText("Click to select ending date");
