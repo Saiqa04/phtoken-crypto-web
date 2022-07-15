@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import Header from './components/header-component/header-component';
 import AdListing from './components/ads-component/ads-component';
 import PromotedCoin from './components/promoted-coins/promoted-coins-component';
@@ -16,10 +16,17 @@ import PromoteAndBooking from '../src/components/pages/booking-promo/booking-pro
 import TermAndConditions from '../src/components/terms-and-condition/terms-and-conditions-component';
 import PrivacyPolicy from '../src/components/privacy-policy/privacy-policy-component';
 import { MissingRoute } from './utils/MissingRoute';
+import { PageTitle } from './helpers/PageTitleHelper';
 
 require('./styles/app.scss');
 
 export default function App() {
+    useEffect(() => {
+        PageTitle({
+            title: "Racoins | Listing & Coin voting platform",
+            description: "Finding new crypto gems made easy with Racoins.cc"
+        })
+    },[])
     return (
         <div>
              <>
