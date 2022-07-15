@@ -5,7 +5,7 @@ import {ADD_COIN} from '../../../services/graphql';
 import { CircularProgress } from '@mui/material';
 import { useChainContext } from '../../../context/ChainContext';
 import MessageSnackBar from '../../../popups/MessageSnackBar';
-import { PageTitle } from '../../../helpers/PageTitleHelper';
+import { Helmet } from 'react-helmet';
 
 require('./add-coin-component.scss');
 
@@ -135,17 +135,12 @@ export default function AddCoin(){
            }
        })
     }
-
-
-    useEffect(() => {
-        PageTitle({
-            title: `Submit your token - Racoins.cc`,
-            description: `Finding new crypto gems made easy with Racoins.cc`
-        })
-    },[])
-
     return (
         <div className="add-coin-container">
+            <Helmet>
+                <title>Submit your token - Racoins.cc</title>
+                <meta name="description" content="Finding new crypto gems made easy with Racoins.cc" />
+            </Helmet>
              <MessageSnackBar open={snackBar.open} type={snackBar.type} close={handleCloseSnackbar} message={snackBar.message}/>
             <form onSubmit={handleSubmit}>
                 <div className='form-wrapper'>
