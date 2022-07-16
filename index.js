@@ -58,8 +58,43 @@ async function startApolloServer(typeDefs, resolvers) {
         cors: corsOptions
      });
     
-    app.use(helmet());
-
+    app.use(helmet.contentSecurityPolicy({
+        useDefaults: true,
+        directives: {
+            "default-src": ["'self'"],
+            "script-src": [
+                "'self'",
+                "'unsafe-inline'",
+                "https:",
+                "https://*.google.com",
+                "https://*.google-analytics.com",
+                "https://*.googletagmanager.com",
+                "https://*.fontawesome.com",
+                "https://*.coinbrain.com",
+                "https://*.twitter.com",
+                "https://racoins.cc"
+            ],
+            "connect-src": [
+                "'self'",
+                "'unsafe-inline'",
+                "https://*.google.com",
+                "https://*.google-analytics.com",
+                "https://*.googletagmanager.com",
+                "https://*.fontawesome.com",
+                "https://*.coinbrain.com",
+                "https://racoins.cc"
+            ],
+            "frame-src" : [
+                "https://*.twitter.com",
+                "https://coinbrain.com",
+            ],
+            "img-src": [
+                "'self'",
+                'data:',
+                "https:"
+            ]
+        }
+    }));
     const indexPath = path.resolve(__dirname, './CLIENT/dist', 'index.html');
 
     app.get('/', function (req, res) {
