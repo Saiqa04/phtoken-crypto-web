@@ -108,7 +108,7 @@ async function startApolloServer(typeDefs, resolvers) {
 
             data = data.replace(/\$TITLE/g, "Racoins.cc - Listing & Coin voting platform")
             .replace(/\$DESCRIPTION/g, "Finding new crypto gems made easy with Racoins.cc")
-            .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-img-big.png")
+            .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-racoins-313.png")
 
             return res.send(data);
        })
@@ -123,7 +123,7 @@ async function startApolloServer(typeDefs, resolvers) {
  
              data = data.replace(/\$TITLE/g, "Terms & Conditions - Racoins.cc")
              .replace(/\$DESCRIPTION/g, "Finding new crypto gems made easy with Racoins.cc")
-             .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-img-big.png")
+             .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-racoins-313.png")
  
              return res.send(data);
         })
@@ -138,7 +138,7 @@ async function startApolloServer(typeDefs, resolvers) {
  
              data = data.replace(/\$TITLE/g, "Privacy Policy - Racoins.cc")
              .replace(/\$DESCRIPTION/g, "Finding new crypto gems made easy with Racoins.cc")
-             .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-img-big.png")
+             .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-racoins-313.png")
  
              return res.send(data);
         })
@@ -153,7 +153,7 @@ async function startApolloServer(typeDefs, resolvers) {
  
              data = data.replace(/\$TITLE/g, "Promote your coin - Racoins.cc")
              .replace(/\$DESCRIPTION/g, "Finding new crypto gems made easy with Racoins.cc")
-             .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-img-big.png")
+             .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-racoins-313.png")
  
              return res.send(data);
         })
@@ -168,7 +168,7 @@ async function startApolloServer(typeDefs, resolvers) {
  
              data = data.replace(/\$TITLE/g, "Submit your coin - Racoins.cc")
              .replace(/\$DESCRIPTION/g, "Finding new crypto gems made easy with Racoins.cc")
-             .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-img-big.png")
+             .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-racoins-313.png")
  
              return res.send(data);
         })
@@ -184,7 +184,7 @@ async function startApolloServer(typeDefs, resolvers) {
 
             data = data.replace(/\$TITLE/g, `${req.params.id} | Racoins.cc`)
             .replace(/\$DESCRIPTION/g, `Click to view $${req.params.id} on Racoins.cc`)
-            .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-img-big.png")
+            .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-racoins-313.png")
 
             return res.send(data);
        })
@@ -203,7 +203,7 @@ async function startApolloServer(typeDefs, resolvers) {
 
             data = data.replace(/\$TITLE/g, "Racoins.cc - Listing & Coin voting platform")
             .replace(/\$DESCRIPTION/g, "Finding new crypto gems made easy with Racoins.cc")
-            .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-img-big.png")
+            .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-racoins-313.png")
 
             return res.send(data);
        })
