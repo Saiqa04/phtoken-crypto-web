@@ -39,7 +39,7 @@ export default function Header() {
     }
     const navigate = useNavigate();
     const viewCoinDetails = (coinInfo) => {
-        navigate(`/coin/${coinInfo.CoinID}`, {
+        navigate(`/coin/${coinInfo.Symbol}`, {
             state: coinInfo
         });
         setSearchQuery("");
@@ -109,8 +109,8 @@ export default function Header() {
                     </div>
                     <hr />
                     <div className='action-button'>
-                        <NavLink to="/booking" className='promote-coin-button'>Service Booking</NavLink>
-                        <NavLink to="/add-coin" className='list-coin-button'>Submit Coin</NavLink>
+                        <a href="/booking" className='promote-coin-button'>Service Booking</a>
+                        <a href="/add-coin" className='list-coin-button'>Submit Coin</a>
                     </div>
                 </div>
                 <div className='responsive-mobile'>

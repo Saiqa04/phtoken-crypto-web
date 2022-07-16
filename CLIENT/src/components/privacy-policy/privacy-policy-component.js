@@ -1,6 +1,4 @@
 import React, { Component, useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import MetaTagHelper from '../../helpers/MetaTagHelper';
 
 require('./privacy-policy-component.scss');
 
@@ -10,7 +8,6 @@ export default function PrivacyPolicy(){
 
     return (
         <div className='privacy-policy'>
-            <MetaTagHelper title={"Privacy & Policy - Racoins.cc"} description={"Finding new crypto gems made easy with Racoins.cc"}/>
             <h2>Privacy Policy</h2>
             <p>Last updated: May 20, 2022</p>
             <p>We at Racoins.cc are committed to protecting your personal information, in fact,

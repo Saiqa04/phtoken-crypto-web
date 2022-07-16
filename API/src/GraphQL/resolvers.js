@@ -74,11 +74,17 @@ const resolvers = {
             }
         },
 
-        CoinByID: async (root, args, context) => {
+        CoinDetails: async (root, args, context) => {
             try{
-                const CoinByID =  await db.Coins.findByPk(args.CoinID);
-                if(CoinByID) {
-                    return CoinByID
+                const result =  await db.Coins.findOne({
+                    where: {
+                        Symbol: {
+                            [Op.eq]: args.Symbol
+                        }
+                    }
+                });
+                if(result) {
+                    return result
                 }else{
                     throw new UserInputError("No result found.");
                 }

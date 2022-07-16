@@ -10,11 +10,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {ADD_RESERVATION, GET_RESERVATION_BY_NUMBER} from '../../../services/graphql';
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
-import Alert from '@mui/material/Alert';
-import Snackbar from '@mui/material/Snackbar';
-import Stack from '@mui/material/Stack';
 import MessageSnackBar from '../../../popups/MessageSnackBar';
-import { Helmet } from 'react-helmet';
 
 require('./booking-promo-component.scss');
 require('../../../styles/calendar.scss')
@@ -204,10 +200,6 @@ export default function PromoteAndBooking(){
     return (
         <div className='pb-container'>
             <MessageSnackBar open={snackBar.open} type={snackBar.type} close={handleCloseSnackbar} message={snackBar.message}/>
-            <Helmet>
-                <title>Promote your coin - Racoins.cc</title>
-                <meta name="description" content="Finding new crypto gems made easy with Racoins.cc" />
-            </Helmet>
             {DialogForm}
             <div className='pb-header'>
                 <h3>Racoins Ad Booking</h3>

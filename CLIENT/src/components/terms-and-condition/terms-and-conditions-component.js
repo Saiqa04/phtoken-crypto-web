@@ -1,5 +1,4 @@
 import React, { Component, useEffect, useState } from 'react';
-import MetaTagHelper from '../../helpers/MetaTagHelper';
 
 require('./terms-and-conditions-component.scss');
 
@@ -9,7 +8,6 @@ export default function TermAndConditions(){
 
     return (
         <div className='terms-and-conditions'>
-            <MetaTagHelper title={"Terms & Conditions - Racoins.cc"} description={"Finding new crypto gems made easy with Racoins.cc"}/>
             <h2>Terms and Conditions</h2>
             <p>Last updated: May 20, 2022</p>
             <p>Please read these terms and conditions carefully before using Our Service.</p>

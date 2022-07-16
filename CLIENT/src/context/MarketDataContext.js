@@ -1,6 +1,7 @@
-import { useQuery } from "@apollo/client";
+import { useQuery,useLazyQuery } from "@apollo/client";
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { GET_ALL_ADDRESSES } from "../services/graphql";
 
 const MarketDataContext = createContext();
@@ -9,7 +10,7 @@ const initialValue = [
     {address: null, priceUsd: null, priceChange24hAgo: null, marketCapUsd: null, totalReserveUsd: null}
 ]
 export const MarketDataContextProvider = ({children}) => {
-    const {loading, data} = useQuery(GET_ALL_ADDRESSES, {
+    const [getAdress, {loading, data}] = useLazyQuery(GET_ALL_ADDRESSES, {
         variables: {
             limit: 250
         }
@@ -17,7 +18,6 @@ export const MarketDataContextProvider = ({children}) => {
 
     const [marketData, setMarketData] = useState(initialValue)
     const [coinsAddresses, setCoinAddresses] = useState([]);
-
     
 
     useEffect(() =>{
@@ -42,12 +42,19 @@ export const MarketDataContextProvider = ({children}) => {
             })
         }
 
+        if(window.location.pathname === "/" || window.location.pathname.startsWith('/coin') 
+            || window.location.pathname === "/all-coins"
+            || window.location.pathname === "/new-coins" || window.location.pathname === "/doxxed" 
+            || window.location.pathname === "/presale"){
+            getAdress();
+        }
+        
         if(coinsAddresses.length > 0){
             fetchMarketData();
         }else{
             fetchAddress();
         }
-        
+
     },[data, coinsAddresses])
     return(
         <MarketDataContext.Provider value={{marketData}}>

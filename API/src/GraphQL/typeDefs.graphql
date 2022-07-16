@@ -5,7 +5,7 @@
     Coins(limit: Int!, offset: Int!): [Coin]
     ContractAddresses(limit: Int!): [Coin]
     PromotedCoins: [PromotedCoin],
-    CoinByID(CoinID: ID!): Coin,
+    CoinDetails(Symbol: String!): Coin,
     CoinByNameOrAddress(Name: String, ContractAddress: String): [Coin],
     ReservationByNumber(Number: String!): Reservation
     BannerAds: [BannerAd]

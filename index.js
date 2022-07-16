@@ -1,5 +1,5 @@
-
 const express = require('express')
+const helmet = require('helmet');
 const path = require('path');
 const { ApolloServer, gql } = require('apollo-server-express')
 const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core');
@@ -57,13 +57,122 @@ async function startApolloServer(typeDefs, resolvers) {
         path: '/api',
         cors: corsOptions
      });
+    
+    app.use(helmet());
 
-    app.use(express.static(path.join(__dirname, 'CLIENT/dist')));
+    const indexPath = path.resolve(__dirname, './CLIENT/dist', 'index.html');
 
-    app.get('/*', function (req, res) {
-       res.sendFile(path.join(__dirname, 'CLIENT/dist', 'index.html'));
+    app.get('/', function (req, res) {
+       fs.readFile(indexPath, 'utf-8', (err, data) => {
+            if(err){
+                console.error('Error during file reading', err);
+                return res.status(404).end();
+            }
+
+            data = data.replace(/\$TITLE/g, "Racoins.cc - Listing & Coin voting platform")
+            .replace(/\$DESCRIPTION/g, "Finding new crypto gems made easy with Racoins.cc")
+            .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-img-big.png")
+
+            return res.send(data);
+       })
     });
 
+    app.get('/terms-and-conditions', function (req, res) {
+        fs.readFile(indexPath, 'utf-8', (err, data) => {
+             if(err){
+                 console.error('Error during file reading', err);
+                 return res.status(404).end();
+             }
+ 
+             data = data.replace(/\$TITLE/g, "Terms & Conditions - Racoins.cc")
+             .replace(/\$DESCRIPTION/g, "Finding new crypto gems made easy with Racoins.cc")
+             .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-img-big.png")
+ 
+             return res.send(data);
+        })
+    });
+
+    app.get('/privacy-policy', function (req, res) {
+        fs.readFile(indexPath, 'utf-8', (err, data) => {
+             if(err){
+                 console.error('Error during file reading', err);
+                 return res.status(404).end();
+             }
+ 
+             data = data.replace(/\$TITLE/g, "Privacy Policy - Racoins.cc")
+             .replace(/\$DESCRIPTION/g, "Finding new crypto gems made easy with Racoins.cc")
+             .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-img-big.png")
+ 
+             return res.send(data);
+        })
+    });
+
+    app.get('/booking', function (req, res) {
+        fs.readFile(indexPath, 'utf-8', (err, data) => {
+             if(err){
+                 console.error('Error during file reading', err);
+                 return res.status(404).end();
+             }
+ 
+             data = data.replace(/\$TITLE/g, "Promote your coin - Racoins.cc")
+             .replace(/\$DESCRIPTION/g, "Finding new crypto gems made easy with Racoins.cc")
+             .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-img-big.png")
+ 
+             return res.send(data);
+        })
+    });
+
+    app.get('/add-coin', function (req, res) {
+        fs.readFile(indexPath, 'utf-8', (err, data) => {
+             if(err){
+                 console.error('Error during file reading', err);
+                 return res.status(404).end();
+             }
+ 
+             data = data.replace(/\$TITLE/g, "Submit your coin - Racoins.cc")
+             .replace(/\$DESCRIPTION/g, "Finding new crypto gems made easy with Racoins.cc")
+             .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-img-big.png")
+ 
+             return res.send(data);
+        })
+    });
+
+    app.get('/coin/:id', function (req, res) {
+        
+        fs.readFile(indexPath, 'utf-8', (err, data) => {
+            if(err){
+                console.error('Error during file reading', err);
+                return res.status(404).end();
+            }
+
+            data = data.replace(/\$TITLE/g, `${req.params.id} | Racoins.cc`)
+            .replace(/\$DESCRIPTION/g, `Click to view $${req.params.id} on Racoins.cc`)
+            .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-img-big.png")
+
+            return res.send(data);
+       })
+
+        console.log(req.params);
+    });
+
+    app.use(express.static(path.resolve(__dirname, './CLIENT/dist')));
+
+    app.get('*', function (req, res) {
+        fs.readFile(indexPath, 'utf-8', (err, data) => {
+            if(err){
+                console.error('Error during file reading', err);
+                return res.status(404).end();
+            }
+
+            data = data.replace(/\$TITLE/g, "Racoins.cc - Listing & Coin voting platform")
+            .replace(/\$DESCRIPTION/g, "Finding new crypto gems made easy with Racoins.cc")
+            .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-img-big.png")
+
+            return res.send(data);
+       })
+    });
+    
+    
     const port = process.env.PORT || 5000;
     await new Promise(resolve => {
         httpServer.listen({port}, resolve)

@@ -5,8 +5,6 @@ import {ADD_COIN} from '../../../services/graphql';
 import { CircularProgress } from '@mui/material';
 import { useChainContext } from '../../../context/ChainContext';
 import MessageSnackBar from '../../../popups/MessageSnackBar';
-import { Helmet } from 'react-helmet';
-import MetaTagHelper from '../../../helpers/MetaTagHelper';
 
 require('./add-coin-component.scss');
 
@@ -138,7 +136,6 @@ export default function AddCoin(){
     }
     return (
         <div className="add-coin-container">
-            <MetaTagHelper title={"Submit your coin - Racoins.cc"} description={"Finding new crypto gems made easy with Racoins.cc"}/>
             <MessageSnackBar open={snackBar.open} type={snackBar.type} close={handleCloseSnackbar} message={snackBar.message}/>
             <form onSubmit={handleSubmit}>
                 <div className='form-wrapper'>

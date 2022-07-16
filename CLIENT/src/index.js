@@ -44,8 +44,8 @@ import {ErrorHandler} from './helpers/ErrorHandler'
 
   if(process.env.NODE_ENV === production){
     var client = new ApolloClient({
-    ///uri: 'http://localhost:5000/api/graphql',
-     uri: 'https://racoins.cc/api/graphql',
+    uri: 'http://localhost:5000/api/graphql',
+    /// uri: 'https://racoins.cc/api/graphql',
       cache: new InMemoryCache({
         typePolicies: {
           Coins: {

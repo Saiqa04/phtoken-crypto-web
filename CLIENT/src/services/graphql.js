@@ -157,9 +157,10 @@ export const GET_PRESALE_COINS = gql`
         }
     }
 `;
-export const GET_COIN_BY_PK = gql`
-   query GetCoinByID($coinId: ID!) {
-        CoinByID(CoinID: $coinId) {
+
+export const GET_COIN_DETAILS = gql`
+   query GetCoinDetails($symbol: String!) {
+        CoinDetails(Symbol: $symbol) {
             CoinID
             Name
             Chain
