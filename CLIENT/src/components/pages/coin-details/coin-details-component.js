@@ -61,7 +61,7 @@ function CoinDetails() {
     const handleVoteClick = () => {
         if(!data?.CoinDetails.IsUpvoted) {     
             addVote({
-                variables: { symbol: getCoinSymbolInUrl },
+                variables: { coinId: data?.CoinDetails.CoinID },
                 onCompleted: () => {
                     setSnackBar({
                         type: "success",
