@@ -14,6 +14,7 @@ import dextoolLogo from '../../../../public/icons/dextools-logo.png';
 import pancakeswapLogo from '../../../../public/icons/pancakeswap-cake-logo.png';
 import uniswapLogo from '../../../../public/icons/uniswap-uni-logo.png';
 import { FetchCoin24hChange, FetchCoinMarketCap, FetchCoinPrice, FetchLiquidity } from '../../../helpers/CoinDataHelper';
+import MetaTagHelper from '../../../helpers/MetaTagHelper';
 require('./coin-details-component.scss');
 
 
@@ -99,10 +100,8 @@ function CoinDetails() {
 
     return (
         <div className='coin-details-container'>
-            <Helmet>
-                <title>{data?.CoinByID.Name +` (${data?.CoinByID.Symbol})` + " - Racoins.cc"}</title>
-                <meta name="description" content={data?.CoinByID.Name + ` has ${data?.CoinByID.VoteToday} today. Check this project now.`} />
-            </Helmet>
+            <MetaTagHelper title={data?.CoinByID.Name +` (${data?.CoinByID.Symbol})` + " - Racoins.cc"} 
+                    description={data?.CoinByID.Name + ` has ${data?.CoinByID.VoteToday} today. Check this project now.`}/>
             <MessageSnackBar open={snackBar.open} type={snackBar.type} close={handleCloseSnackbar} message={snackBar.message}/>
             <div className='nav'>
                 <NavLink to="/">Home&nbsp;/</NavLink>

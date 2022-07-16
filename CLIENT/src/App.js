@@ -16,17 +16,14 @@ import PromoteAndBooking from '../src/components/pages/booking-promo/booking-pro
 import TermAndConditions from '../src/components/terms-and-condition/terms-and-conditions-component';
 import PrivacyPolicy from '../src/components/privacy-policy/privacy-policy-component';
 import { MissingRoute } from './utils/MissingRoute';
-import { Helmet } from 'react-helmet';
+import MetaTagHelper from './helpers/MetaTagHelper';
 
 require('./styles/app.scss');
 
 export default function App() {
     return (
         <div>
-            <Helmet>
-                <title>Racoins.cc - Listing & Coin voting platform</title>
-                <meta name="description" content="Finding new crypto gems made easy with Racoins.cc" />
-            </Helmet>
+            <MetaTagHelper title={"Racoins.cc - Listing & Coin voting platform"} description={"Finding new crypto gems made easy with Racoins.cc"}/>
              <>
                 <div className="header-container">
                     <div className="container">
