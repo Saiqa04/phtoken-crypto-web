@@ -10,7 +10,8 @@ export const ChainContextProvider = ({children}) => {
     const [chains, setChains] = useState([]);
 
     useEffect(() => {
-        if(window.location.pathname.startsWith("/add-coin")){
+        if(window.location.pathname.startsWith("/add-coin")
+        || window.location.pathname === "/"){
             getChains();
         }
         
