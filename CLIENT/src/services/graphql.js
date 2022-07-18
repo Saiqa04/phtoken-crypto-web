@@ -4,7 +4,6 @@ export const GET_PROMOTED_COINS = gql`
     query GetPromotedCoins{
         PromotedCoins {
             id
-            CoinID
             Coins {
                 CoinID
                 Name
@@ -39,7 +38,7 @@ export const GET_ALL_ADDRESSES = gql`
 `;
 export const GET_COINS = gql`
     query GetCoins($offset: Int!){
-        Coins(limit: 20, offset: $offset){
+        Coins(limit: 10, offset: $offset){
             CoinID
             Name
             Chain
@@ -87,7 +86,7 @@ export const GET_TOP_COINS = gql`
 `;
 export const GET_NEW_COINS = gql`
     query GetNewCoins($offset: Int!){
-        NewCoins(limit: 20, offset: $offset){
+        NewCoins(limit: 10, offset: $offset){
             CoinID
             Name
             Chain
@@ -111,7 +110,7 @@ export const GET_NEW_COINS = gql`
 `;
 export const GET_DOXXED_COINS = gql`
     query GetDoxxedCoins($offset: Int!){
-        Doxxed(limit: 20, offset: $offset){
+        Doxxed(limit: 10, offset: $offset){
             CoinID
             Name
             Chain
@@ -135,7 +134,7 @@ export const GET_DOXXED_COINS = gql`
 `;
 export const GET_PRESALE_COINS = gql`
     query GetPresaleCoins($offset: Int!){
-        Presale(limit: 20, offset: $offset){
+        Presale(limit: 10, offset: $offset){
             CoinID
             Name
             Chain

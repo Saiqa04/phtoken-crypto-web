@@ -15,7 +15,6 @@
     Presale(limit: Int!, offset: Int!): [Coin]
     Chains: [Chain] 
     #ADMIN
-    VoteLog: [Vote]
     ForApprovalCoinCount: Int
     AllCoinCount: Int
     DoxxedCoinCount: Int
@@ -45,7 +44,7 @@
     LogoLink: String!, 
     VoteToday: Int,
     AllTimeVote: Int,
-    IsUpvoted(ClientIP: String): Boolean,
+    IsUpvoted: Boolean,
     Status: String!
     ContactEmail: String
     createdAt: Date
@@ -54,12 +53,12 @@
 
  type PromotedCoin {
     id: ID!,
-    CoinID: ID,
     Coins: Coin,
     StartDate: Date,
     EndDate: Date,
     ReservationNumber: String
  }
+ 
 
 type Chain {
    ChainID: ID!,
@@ -91,7 +90,6 @@ type Transaction {
    updatedAt: Date
 }
 
-
 type BannerAd {
    id: ID!
    BannerType: String
@@ -105,15 +103,6 @@ type BannerAd {
    BannerName: String
    Description: String
 }
-
- type Vote {
-   id: ID!,
-   CoinID: ID,
-   DateOfVote: Date,
-   IPAddress: String
-   createdAt: Date
-   updatedAt: Date
- }
 
  type Mutation {
    voteCoin(

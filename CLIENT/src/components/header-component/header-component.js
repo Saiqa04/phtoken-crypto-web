@@ -65,7 +65,7 @@ export default function Header() {
                     <p>List your token for <span>FREE</span>&nbsp;&nbsp;-&nbsp;Discover the next <span>GEM</span> with <span>Racoins.cc</span></p>
                 </div>
                 <div className='our-group'>
-                    <span>Twitter</span><a style={{marginRight: 15}}>{twitter}</a>
+                    <span>Twitter</span><a href='https://twitter.com/racoinsofficial' target='_blank' style={{marginRight: 15}}>{twitter}</a>
                     <span>Telegram</span><a href='https://t.me/racoinsofficial' target='_blank'>{telegram}</a>
                     
                 </div>

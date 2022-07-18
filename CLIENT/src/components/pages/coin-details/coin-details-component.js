@@ -12,7 +12,6 @@ import dextoolLogo from '../../../../public/icons/dextools-logo.png';
 import pancakeswapLogo from '../../../../public/icons/pancakeswap-cake-logo.png';
 import uniswapLogo from '../../../../public/icons/uniswap-uni-logo.png';
 import { FetchCoin24hChange, FetchCoinMarketCap, FetchCoinPrice, FetchLiquidity } from '../../../helpers/CoinDataHelper';
-import axios from 'axios';
 require('./coin-details-component.scss');
 
 
@@ -54,7 +53,14 @@ function CoinDetails() {
             symbol: getCoinSymbolInUrl
         },
         onError: () => {
-            navigate('/');
+            setSnackBar({
+                type: "error",
+                message: `Cannot find ${getCoinSymbolInUrl}. You will be redirected to home page in 3s`,
+                open: true
+            })
+            setTimeout(() => {
+                window.location = "/"
+            }, 3000);
         }
     });
 
@@ -95,36 +101,6 @@ function CoinDetails() {
             <Helmet><script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script></Helmet>
         </>
     )
-
-    /* FETCH MARKET DATA 
-    const initialValue = {
-    priceUsd: null, 
-    priceChange24hAgo: null,
-    marketCapUsd: null, 
-    totalReserveUsd: null
-    }
-    
-    const [marketData, setMarketData] = useState(initialValue)
-
-    useEffect(() => {
-        const fetchMarketData = async () => { 
-            await axios.post("https://api.coinbrain.com/public/coin-info", {
-                "56" : [data?.CoinDetails.ContractAddress]
-            }).then((res) => {
-                res.data.map((d) => {
-                    setMarketData({
-                        priceUsd: d.priceUsd === null ? 0.00 : d.priceUsd,
-                        priceChange24hAgo: d.priceUsd24hAgo === null ? 0.00 : ((d.priceUsd.toFixed(15) - d.priceUsd24hAgo.toFixed(15)) / d.priceUsd24hAgo.toFixed(15) * 100).toFixed(2),
-                        marketCapUsd: d.marketCapUsd === null ? 0.00 : d.marketCapUsd,
-                        totalReserveUsd: d.totalReserveUsd === null ? 0.00 : d.totalReserveUsd
-                    })
-                })
-            })
-        }
-        
-        fetchMarketData();
-    },[data])
-    */
 
     return (
         <div className='coin-details-container'>

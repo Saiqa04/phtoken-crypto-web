@@ -79,7 +79,7 @@ const resolvers = {
                 const result =  await db.Coins.findOne({
                     where: {
                         Symbol: {
-                            [Op.eq]: args.Symbol
+                            [Op.iLike]: args.Symbol
                         }
                     }
                 });
@@ -94,25 +94,13 @@ const resolvers = {
         },
 
         TopCoins: async (root, args, context) => {
-            if(args.query === 'VoteToday'){
-                return await sequelize.query(`SELECT Coin."CoinID", COUNT(CASE WHEN Vote."DateOfVote" = CURRENT_DATE THEN 0 END) as VoteToday, "Name", 
-                "Chain", "Symbol", "ContractAddress",
-                "LaunchDate", "IsPresale", "IsDoxxed", "Description", "AuditLink", "Website", "Telegram", "Twitter", "Discord", "LogoLink", "ContactEmail", 
+            return await sequelize.query(`SELECT Coin."CoinID", COUNT(Vote."DateOfVote") as "AllTimeVote", COUNT(CASE WHEN Vote."DateOfVote" = CURRENT_DATE THEN 0 END) as "VoteToday", "Name", 
+                "Chain", "Symbol", "ContractAddress", "LaunchDate", "IsPresale", "IsDoxxed", "Description", "AuditLink", "Website", "Telegram", "Twitter", "Discord", "LogoLink", "ContactEmail", 
                 "Status", Coin."createdAt", Coin."updatedAt" FROM "Coins" as Coin LEFT JOIN "Votes" as Vote ON Coin."CoinID" = Vote."CoinID" WHERE Coin."Status" = 'Approved' GROUP BY Coin."CoinID" 
-                ORDER BY VoteToday DESC LIMIT ${args.limit} OFFSET ${args.offset}`, {
-                    raw: true,
-                    type: QueryTypes.SELECT})
-            }else if(args.query === 'AllTimeVote'){
-                return await sequelize.query(`SELECT Coin."CoinID", COUNT(Vote."DateOfVote") as AllTimeVote, "Name", 
-                "Chain", "Symbol", "ContractAddress", 
-                "LaunchDate", "IsPresale", "IsDoxxed", "Description", "AuditLink", "Website", "Telegram", "Twitter", "Discord", "LogoLink", "ContactEmail", 
-                "Status", Coin."createdAt", Coin."updatedAt" FROM "Coins" as Coin LEFT JOIN "Votes" as Vote ON Coin."CoinID" = Vote."CoinID" WHERE Coin."Status" = 'Approved' GROUP BY Coin."CoinID" 
-                ORDER BY AllTimeVote DESC LIMIT ${args.limit} OFFSET ${args.offset}`, {
-                    raw: true,
-                    type: QueryTypes.SELECT})
-            }else {
-                return null;
-            }
+                ORDER BY "${args.query}" DESC LIMIT ${args.limit} OFFSET ${args.offset}`, {
+                raw: true,
+                type: QueryTypes.SELECT
+            })
         },
                
         NewCoins: async (root, args, context) => {
@@ -230,7 +218,7 @@ const resolvers = {
         },
 
         AllCoinCount: async() => {
-            const {count, row} = await db.Coins.findAndCountAll({
+            const count = await db.Coins.count({
                 where: {
                     Status: {
                         [Op.eq]: "Approved"
@@ -241,7 +229,7 @@ const resolvers = {
         },
 
         ForApprovalCoinCount: async() => {
-            const {count, row} = await db.Coins.findAndCountAll({
+            const count = await db.Coins.count({
                 where: {
                     Status: {
                         [Op.eq]: "Pending"
@@ -252,7 +240,7 @@ const resolvers = {
         },
 
         DoxxedCoinCount: async () => {
-            const {count, row} = await db.Coins.findAndCountAll({
+            const count = await db.Coins.count({
                 where: {
                     Status: {
                         [Op.eq]: "Approved"
@@ -266,7 +254,7 @@ const resolvers = {
         },
 
         PresaleCoinCount: async () => {
-            const {count, row} = await db.Coins.findAndCountAll({
+            const count = await db.Coins.count({
                 where: {
                     Status: {
                         [Op.eq]: "Approved"
@@ -280,7 +268,7 @@ const resolvers = {
         },
 
         PendingReservationCount: async () => {
-            const {count, row} = await db.Reservations.findAndCountAll({
+            const count = await db.Reservations.count({
                 where: {
                     PaymentStatus: {
                         [Op.eq]: "Pending"
@@ -322,94 +310,32 @@ const resolvers = {
                 ]
             })
         },
-
-        VoteLog: async () => {
-            return await db.Votes.findAll({
-                limit: 100,
-                order: [
-                    ["createdAt","DESC"]
-                ]
-            })
-        }
-
     },
 
     Coin: {
-        VoteToday: async (parent) => {
-            try{
-                const {count, rows} = await db.Votes.findAndCountAll({
-                    where: {
-                        CoinID: {
-                            [Op.eq]: parent.CoinID
-                        },
-                        DateOfVote: {
-                            [Op.eq]: moment(new Date()).format("YYYY-MM-DD")
-                        }
-                    }
-                })
-                return count;
-
-            }catch(err){
-                return err;
-            }
+        VoteToday: async (parent,_,context) => {
+            return context.todaysVote.load(parent.CoinID)
         },
-
-        AllTimeVote: async (parent) => {
-            try {
-                const {count, rows} = await db.Votes.findAndCountAll({
-                    where: {
-                        CoinID: {
-                            [Op.eq]: parent.CoinID
-                        }
-                    }
-                })
-                return count;
-            } catch (err) {
-                return err;
-            }
+        
+        AllTimeVote: async (parent,_,context) => {
+            return context.allTimeVote.load(parent.CoinID)
         },
+        
 
         IsUpvoted: async (parent, {}, context) => {
-            try {
-                const {count, rows} = await db.Votes.findAndCountAll({
-                    where: {
-                        DateOfVote: {
-                            [Op.eq]: moment(new Date()).format("YYYY-MM-DD")
-                        },
-                        IPAddress: {
-                            [Op.eq]: context.clientIP
-                        },
-                        CoinID: {
-                            [Op.eq]: parent.CoinID
-                        }
-                    }
-                })
-
-              if(count > 0){
-                  return true;
-              }else {
-                  return false;
-              }
-
-            }catch(err){
-                return err;
-            }
-        }
+            return context.upvoted.load(parent.CoinID)
+        }        
     },
     
     PromotedCoin: {
-        Coins: async (parent) => {
-            try{
-                return await db.Coins.findByPk(parent.CoinID)
-            }catch(err){
-                return err;
-            }
+        Coins: async (parent,_,context) => {
+            return context.coins.load(parent.CoinID)
         },
     },
 
     Mutation: {
         voteCoin: async (_, {CoinID}, context) => {
-            const {count, rows} = await db.Votes.findAndCountAll({
+            const count = await db.Votes.count({
                 where: {
                     DateOfVote: {
                         [Op.eq]: moment(new Date()).format("YYYY-MM-DD")

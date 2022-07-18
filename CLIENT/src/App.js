@@ -16,7 +16,8 @@ import PromoteAndBooking from '../src/components/pages/booking-promo/booking-pro
 import TermAndConditions from '../src/components/terms-and-condition/terms-and-conditions-component';
 import PrivacyPolicy from '../src/components/privacy-policy/privacy-policy-component';
 import { MissingRoute } from './utils/MissingRoute';
-import sharedLinkBgImage from '../public/images/logo-racoins-313.png';
+import sharedLinkImage from '../public/images/logo-racoins-313.png';
+import notFound404 from '../public/images/404.png';
 
 require('./styles/app.scss');
 

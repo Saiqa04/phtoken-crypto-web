@@ -43,7 +43,7 @@ function Footer (){
                             <h4 className='header2'>Follow us</h4>
                             <div>
                                 <a style={{marginRight: 10}} href="https://t.me/racoinsofficial"  target="_blank">Telegram</a>
-                                <a style={{marginRight: 10}} href="#">Twitter</a>
+                                <a style={{marginRight: 10}} href="https://twitter.com/racoinsofficial" target="_blank">Twitter</a>
                             </div>
                         </div>
                         <div className='company'>
@@ -53,9 +53,6 @@ function Footer (){
                             </div>
                             <div>
                                 <a href='/privacy-policy'>Privacy Policy</a>
-                            </div>
-                            <div>
-                                <a href='#'>Disclaimer</a>
                             </div>
                         </div>
                     </div>
