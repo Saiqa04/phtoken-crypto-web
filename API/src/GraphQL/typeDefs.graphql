@@ -5,7 +5,7 @@
     Coins(limit: Int!, offset: Int!): [Coin]
     ContractAddresses(limit: Int!): [Coin]
     PromotedCoins: [PromotedCoin],
-    CoinDetails(Symbol: String!): Coin,
+    CoinDetails(CoinID: Int!): Coin,
     CoinByNameOrAddress(Name: String, ContractAddress: String): [Coin],
     ReservationByNumber(Number: String!): Reservation
     BannerAds: [BannerAd]
@@ -37,6 +37,7 @@
     IsDoxxed: Boolean,
     Description: String!,
     AuditLink: String,
+    PresaleLink: String
     Website: String,
     Telegram: String!,
     Twitter: String,
@@ -122,6 +123,7 @@ type BannerAd {
       Twitter: String,
       Discord: String,
       AuditLink: String,
+      PresaleLink: String,
       LogoLink: String!,
       ContactEmail: String!,
       Status: String!

@@ -57,7 +57,7 @@ export const FetchCoinMarketCap = ({data}) => {
         return <span className='no-data'>-</span> 
     }else{
         return  data.IsPresale ? 
-            <span className="isPresale">Presale</span> : 
+            <span style={{color: "#e00da1"}}>Presale</span> : 
             <NumberFormat value={result[0].marketCapUsd}
                 prefix={'$'}
                 thousandSeparator={true}

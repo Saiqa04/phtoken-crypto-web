@@ -65,7 +65,7 @@ function PromotedCoins() {
                                 <td>
                                     <div className='row-name-flex'>
                                         <div>
-                                            <div><a className='coin-name' href={`/coin/${row.Coins.Symbol}`}>{row.Coins.Name}</a>
+                                            <div><a className='coin-name' href={`/coin/${row.Coins.CoinID}`}>{row.Coins.Name}</a>
                                             <span style={{color: '#6d7791'}}>&nbsp;{"$"+row.Coins.Symbol}</span></div> 
                                             <div> {(row.Coins.AuditLink) === null || row.Coins.AuditLink === "" ? "" : <span className="audited">Audited</span>}{(row.Coins.IsDoxxed) == false || (row.Coins.IsDoxxed) === 0 ?  "" : <span className="doxxed">Doxxed</span>}</div>
                                         </div>
@@ -103,7 +103,7 @@ function PromotedCoins() {
                                 <td>{moment(row.Coins.LaunchDate, "YYYYMMDD").fromNow()}</td>
                                 <td>{row.Coins.AllTimeVote}&nbsp;&nbsp;<span style={{fontSize: 14,color:'#18c477'}}>{svgArrowUp}{row.Coins.VoteToday}</span></td>
                                 <td><a className={(row.Coins.IsUpvoted ? "button voted" : "button normal")} 
-                                    href={`/coin/${row.Coins.Symbol}`}>VOTE</a>
+                                    href={`/coin/${row.Coins.CoinID}`}>VOTE</a>
                                 </td>
                             </tr>
                         ))}

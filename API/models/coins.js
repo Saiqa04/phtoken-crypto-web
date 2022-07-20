@@ -49,12 +49,16 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: false,
     },
     Description: {
-        type: DataTypes.STRING(300),
+        type: DataTypes.STRING(1200),
         allowNull: true
     },
     AuditLink: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING(300),
         allowNull: true
+    },
+    PresaleLink: {
+      type: DataTypes.STRING(300),
+      allowNull: true
     },
     Website: {
         type: DataTypes.STRING(64),
@@ -73,7 +77,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true
     },
     LogoLink: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING(300),
         allowNull: false
     },
     ContactEmail: {

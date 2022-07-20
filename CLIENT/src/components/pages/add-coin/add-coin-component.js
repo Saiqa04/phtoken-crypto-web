@@ -23,6 +23,7 @@ const initialValues = {
     discord: "",
     audit: "",
     logo: "",
+    presaleLink: "",
     contactEmail: ""
 }
 
@@ -91,6 +92,13 @@ export default function AddCoin(){
                     open: true
                 })
                 return false;
+        } else if (values.isPresale && values.presaleLink === "") {
+            setSnackBar({
+                type: "warning",
+                message: "Please provide a presale link.",
+                open: true
+            })
+            return false;
         } else {
             return true;
         }
@@ -128,6 +136,7 @@ export default function AddCoin(){
             twitter: values.twitter, 
             discord: values.discord, 
             audit: values.audit, 
+            presaleLink: values.presaleLink,
             logo: values.logo,
             contactEmail: values.contactEmail,
             status: "Pending"
@@ -161,6 +170,11 @@ export default function AddCoin(){
                                 Yes
                             </label>
                         </div>
+                        {values.isPresale ? 
+                        <>
+                            <label>Presale Link <span>Required</span></label>
+                            <input style={{borderColor: '#3CAFF0'}} type="text" name='presaleLink' value={values.presaleLink} onChange={handleInputChange} placeholder=''/>
+                        </> : ''}
                         <label>Launch Date (YYYY-MM-DD) <span>Required</span></label>
                         <input type="text" name='launchDate' value={values.launchDate} onChange={handleInputChange} placeholder=''/>
 
@@ -179,7 +193,7 @@ export default function AddCoin(){
                         <input type="text" name='twitter' value={values.twitter} onChange={handleInputChange}/>
                         <label>Discord</label>
                         <input type="text" name='discord' value={values.discord} onChange={handleInputChange}/>
-                        <label>Audit</label>
+                        <label>Audit Link</label>
                         <input type="text" name='audit' value={values.audit} onChange={handleInputChange}/>
                         <label>Logo <span>Required</span></label>
                         <input type="text" name='logo' placeholder='eg. https://i.ibb.co/42fVQ3z/logo.png' value={values.logo} onChange={handleInputChange}/>

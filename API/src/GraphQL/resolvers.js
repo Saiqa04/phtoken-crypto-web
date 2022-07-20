@@ -78,8 +78,8 @@ const resolvers = {
             try{
                 const result =  await db.Coins.findOne({
                     where: {
-                        Symbol: {
-                            [Op.iLike]: args.Symbol
+                        CoinID: {
+                            [Op.eq]: args.CoinID
                         }
                     }
                 });
@@ -367,7 +367,8 @@ const resolvers = {
             IsPresale,LaunchDate,
             Telegram,Website,
             Twitter,Discord,
-            AuditLink,LogoLink,ContactEmail,Status}, context) => {
+            AuditLink,LogoLink,
+            PresaleLink,ContactEmail,Status}, context) => {
 
 
                 await db.Coins.create({
@@ -375,7 +376,7 @@ const resolvers = {
                     ContractAddress,Description,
                     IsPresale,LaunchDate,
                     Telegram,Website,
-                    Twitter,Discord,
+                    Twitter,Discord,PresaleLink,
                     AuditLink,LogoLink,ContactEmail, Status
                 }).catch(() => {
                     throw new UserInputError(`We seems to have issue adding your coin. Please check your inputs and try again?`)

@@ -2,7 +2,7 @@
 
 .header-container {
     background-color: $racoins-color-blue-700;
-    height: 100px;
+    height: 105px;
     z-index: 20;
     a {
         text-decoration: none;
@@ -64,7 +64,6 @@
 
             hr {
                 width: 1px;
-                height: 15px;
                 border-right: 1px solid  $racoins-color-blue-400;
                 border-top: 0;
                 border-bottom: 0;
@@ -77,20 +76,29 @@
                 border-radius: 5px;
                 border: 1px solid $racoins-color-blue-400;
                 background-color: $racoins-color-blue-400;
-                width: 195px;
-                .icon {
-                    color: $racoins-color-green-100;
-                    padding: 7px 8px;
-                    float: right;
+                width: 190px;
+                
+                &:focus-within {
+                    border: 1px solid $racoins-color-blue-100;
                 }
+                
                 input {
                     font-size: 11px;
+                    float: left;
                     color:  $racoins-color-white-100;
                     outline: none;
                     background-color: transparent;
                     border: 0;
                     padding: 7px 8px;
                 }
+                .magnifying {
+                    margin-left: 10px;
+                    margin-top: 7px;
+                    width: 16px;
+                    height: 16px;
+                    fill: #bebebe;
+                }
+                
 
                 .result-wrapper {
                     margin-top: 5px;
@@ -100,7 +108,7 @@
                     border: 1px solid $racoins-color-blue-400;
                     position: absolute;
                     box-shadow: 1px 1px 5px 2px rgb(14, 17, 31);
-                    width: 195px;
+                    width: 190px;
                     max-height: 200px;
                     overflow-y: scroll;
                     scrollbar-width: none; /* Firefox */

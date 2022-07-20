@@ -4,7 +4,7 @@ import { Navigate, NavLink, useLocation } from 'react-router-dom';
 import {GET_COIN_BY_NAME_OR_ADDRESS, LOGIN} from '../../services/graphql';
 import { useNavigate, Link } from 'react-router-dom';
 import logo from '../../../public/images/logo-racoins.png';
-import {twitter, telegram} from '../../utils/SvgIcons';
+import {twitter, telegram, magnifyingGlass} from '../../utils/SvgIcons';
 require('./header-component.scss');
 
 export default function Header() {
@@ -78,7 +78,7 @@ export default function Header() {
                     <div className='search-box'>
                             <input type="text" onChange={(e) => handleSearch(e)} onBlur={handleBlur}  
                                 value={searchQuery} placeholder="Search Name / Address..."/> 
-                            <i className="fa-solid fa-magnifying-glass icon"></i>                   
+                            {magnifyingGlass}             
                             {
                                 ///the user typed anything on the search box -- Handled by onBlur Event
                             hasResult === true ? 
@@ -109,8 +109,8 @@ export default function Header() {
                     </div>
                     <hr />
                     <div className='action-button'>
-                        <a href="/booking" className='promote-coin-button'>Service Booking</a>
-                        <a href="/add-coin" className='list-coin-button'>Submit Coin</a>
+                        <a href="/booking" className='promote-coin-button'>PROMOTE</a>
+                        <a href="/add-coin" className='list-coin-button'>SUBMIT COIN</a>
                     </div>
                 </div>
                 <div className='responsive-mobile'>

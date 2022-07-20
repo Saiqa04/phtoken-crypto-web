@@ -1,6 +1,7 @@
 @import '../../../styles/variables';
 
 .coin-details-container {
+    overflow: hidden;
     .error {
         color: $racoins-color-red-100;
         font-size: 11px;
@@ -34,12 +35,12 @@
             .coin-info {
                 background-color: $racoins-color-blue-700;
                 padding: 20px;
-                border-radius: 5px;
-                border: 1px solid $racoins-color-blue-700;
+                border-radius: 10px;
+                border: 1px solid $racoins-color-blue-400;
                 margin-bottom: 10px;
                 .logo-name-wrapper {
                     display: flex;
-    
+                    
                     img {
                         height: 60px;
                         width: 60px;
@@ -49,22 +50,6 @@
                             display: none;
                          }
                     }    
-                    
-                    .copyToClipboard {
-                        margin-left: 5px;
-                        background-color: $racoins-color-blue-700;
-                        outline: none;
-                        color: white;
-                        cursor: pointer;
-                        font-size: 12px;
-                        padding: 5px 8px;
-                        border-radius: 5px;
-                        border: 1px solid $racoins-color-blue-400;
-    
-                        &:hover {
-                            background-color: $racoins-color-blue-800;
-                        }
-                    }
                 }
                 .name {
                     display: flex;
@@ -93,13 +78,30 @@
                         background-color: $racoins-color-green-100;
                     }
                 }
-    
+                .copyToClipboard {
+                    margin-left: 5px;
+                    background-color: $racoins-color-blue-700;
+                    outline: none;
+                    color: white;
+                    cursor: pointer;
+                    font-size: 12px;
+                    float: right;
+                    padding: 5px 5px 3px 5px;
+                    border: 0;
+                    margin-top: -5px;
+                    .copyIcon {
+                        fill: rgb(161, 161, 161);
+                        &:hover {
+                            fill: $racoins-color-blue-100;
+                        }
+                    }
+                }
                 .coin-ca {
+                    display: flex;
                     font-size: 13px;
                     color: $racoins-color-white-100;
                     font-weight: 300;
                     margin-top: 5px;
-    
                     span {
                         font-weight: 500;
                     }
@@ -108,21 +110,23 @@
                 .css_vlcom {
                     display: flex;
                     margin-top: 50px;
+                    border: 1px solid $racoins-color-blue-400;
+                    border-left: 0;
+                    border-right: 0;
+                    padding: 8px 0px;
                     color: $racoins-color-white-100;
-                    font-size: 13px;
+                    font-size: 12px;
                     white-space: nowrap;
 
                     div {
                         span {
                             font-size: 14px;
                             padding: 4px 15px;
-                            border: 1px solid $racoins-color-blue-700;
-                            background-color: $racoins-color-blue-800;
                             border-radius: 5px;
                             margin-right: 10px;
                         }
                     }
-    
+                    
                     @media screen and (max-width: 460px) {
                         span {
                             margin-right: 3px;
@@ -131,40 +135,44 @@
                     }
                 }
     
-                .vote {
-                    text-align: center;
-                    margin-top: 40px;
-                    margin-bottom: 30px;
-
+                .action-buttons {
+                    text-align: left;
                     button {
-                        padding: 10px 15px;
+                        padding: 8px 15px;
+                        border: 1px solid $racoins-color-blue-100;
+                    }
+                    a {
+                        padding: 9px 15px 10px 15px;
+                        background-color: rgb(48, 48, 97);
+                        border: 1px solid $racoins-color-blue-200;
+                    }
+                    button, a {
+                        font-weight: 600;
                         border-radius: 5px;
-                        border: 1px solid $racoins-color-gray-400;
-                        width: 230px;
-                        min-width: 130px;
+                        margin-right: 5px;
+                        min-width: 90px;
                         cursor: pointer;
                         color: $racoins-color-white-100;
     
                         &.voted {
                              background-color: $racoins-color-green-100;
+                             border: 1px solid $racoins-color-green-100;
                         }
                         &.normal {
                             background-color: $racoins-color-blue-100;
-                       }
-                       
+                        }
                     }
-                }
-    
-                .chart {
-                    margin-top: 30px;
+                   
                 }
             }
-            
+            .chart {
+                padding: 0px 3px 0px 0px;
+            }
             .coin-description {
                 background-color: $racoins-color-blue-700;
                 padding: 20px;
-                border-radius: 5px;
-                border: 1px solid $racoins-color-blue-700;
+                border-radius: 10px;
+                border: 1px solid $racoins-color-blue-400;
                 overflow-x: scroll;
                 scrollbar-width: none; /* Firefox */
                 -ms-overflow-style: none;  /* Internet Explorer 10+ */
@@ -188,12 +196,10 @@
 
         .side-wrapper {
             flex-basis: 30%;
-
             .community-container,.swaps-container, .charts-container, .market-data-container {
                 background-color: $racoins-color-blue-700;
-                border-radius: 5px;
+                border-radius: 10px;
                 border: 1px solid $racoins-color-blue-400;
-                
                 margin-bottom: 5px;
             }
 
@@ -201,12 +207,12 @@
                 padding: 20px 20px 10px 20px;
                 h3 {
                     font-weight: 400 !important;
-                    font-size: 18px;
+                    font-size: 16px;
                 }
 
                 div p {
                     color: $racoins-color-gray-400;
-                    font-size: 16px;
+                    font-size: 14px;
 
                     .no-data {
                         color: $racoins-color-blue-400;
@@ -253,20 +259,21 @@
             }
 
             .community-container {
-                overflow-x: auto;
-                white-space: nowrap;
-                max-height: 70px;
-                padding: 20px;
+                padding: 10px 20px 10px 10px;
                 text-align: center;
                 h3 {
                     font-weight: 400;
-                    font-size: 15px;
-                    margin-bottom: 10px;
+                    font-size: 13px;
+                    margin-bottom: 15px;
                 }
-
+                div {
+                    padding: 8px;
+                    overflow-x: auto;
+                    white-space: nowrap;
+                }
                 div a {
                     margin-right: 5px;
-                    padding: 5px 8px;
+                    padding: 8px;
                     border-radius: 5px;
                     color: $racoins-color-white-100;
                     font-size: 12px;
@@ -295,8 +302,12 @@
             }
 
             .charts-container {
-                padding: 10px 20px 15px 20px;
+                padding: 15px 20px 20px 20px;
                 text-align: center;
+                
+                .no-available {
+                    color: $racoins-color-gray-400;
+                }
                 h3 {
                     font-weight: 400;
                     font-size: 13px;
@@ -309,10 +320,10 @@
                     border: 1px solid $racoins-color-blue-400;
                     color: $racoins-color-white-100;
                     img {
-                        margin-bottom: -5px;
-                        margin-right: 2px;
-                        max-height: 22px;
-                        max-width: 22px;
+                        margin-bottom: -3px;
+                        margin-right: 4px;
+                        max-height: 17px;
+                        max-width: 17px;
                     }
                     &:hover {
                         background-color: $racoins-color-blue-800;
@@ -321,8 +332,7 @@
             }
 
             .swaps-container {
-                padding: 0 20px 0 20px;
-                height: 35px;
+                padding: 3px 20px 3px 20px;
                 color: $racoins-color-white-100;
                 .swap-wrapper {
                     line-height: 35px;
@@ -334,13 +344,13 @@
                         color: $racoins-color-white-100;
                        
                         img {
-                            margin-bottom: -5px;
-                            margin-right: 3px;
-                            height: 20px;
-                            width: 20px;
+                            margin-bottom: -4px;
+                            margin-right: 4px;
+                            height: 17px;
+                            width: 17px;
                         }
                     }
-                    .swap-noExchange {
+                    .no-available {
                         color: $racoins-color-gray-400;
                     }
                 }
@@ -367,10 +377,6 @@
                 .coin-description {
                     font-size: 14px;
                 }
-
-                .vote {
-                    padding: 8px 12px;
-                }
             }
             .side-wrapper {
                 margin: 5px;
@@ -379,19 +385,7 @@
     }
 
     @media screen and (max-width: 668px) {
-       .flex-container {
-            margin: 0 5px;
-            .info-wrapper {
-                .coin-info {
-                    .coin-ca {
-                        .copyToClipboard {
-                            margin-left: 0;
-                            width: 100%;
-                        }
-                    }
-                }
-            }
-       }
+       
     }
 
     @media screen and (max-width: 420px) {   
@@ -404,12 +398,18 @@
                 .coin-info {
                     .coin-ca {
                         font-size: 12px;
+                        .copyToClipboard {
+                            margin-left: 0;
+                        }
                     }
                     .css_vlcom {
-                        font-size: 12px;
+                        margin-top: 25px;
                         flex-direction: column;
                         div {
-                            margin-bottom: 15px;
+                            span {
+                                margin-right: 5px;
+                                padding: 4px 8px;
+                            }
                         }
                     }
                 }

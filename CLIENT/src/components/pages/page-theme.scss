@@ -55,7 +55,13 @@
                 }
             }
         }
-       
+        tbody {
+           tr {
+                &:hover{
+                    background-color: $racoins-color-blue-800;
+                }
+           }
+        }
         th, td {
             .coin-name {
                 text-decoration: none;
@@ -70,14 +76,13 @@
             &:nth-child(2) {
                 padding: 0;
             }
-               //PRICE
-            &:nth-child(5){
-                text-align: center !important;
-                padding: 0;
-            }
 
             &:nth-child(10){
                 width: 5%;
+            }
+            
+            &:nth-child(5) {
+                text-align: left;
             }
         }
 
@@ -107,7 +112,7 @@
                 margin-right: 5px;
                 border-radius: 10px;
             }
-        
+            
             .row-name-flex {
                 display: flex;
                 flex-direction: row;
@@ -132,9 +137,6 @@
                 margin-right: 2px;
             }
 
-            .isPresale {
-                color: #e00da1;
-            }
             .doxxed {
                 font-size: 9px;
                 background-color: $racoins-color-green-100;
@@ -185,9 +187,11 @@
     
     .promoted-coin-table, .top-coin-table {
         td,th {
-            &:nth-child(4), &:nth-child(5), &:last-child{
+            &:nth-child(4),  &:last-child{
                 text-align: left;
-                padding-left: 10px;
+            }
+            &:nth-child(5) {
+                text-align: center;
             }
         }
         .row-name-flex {
@@ -206,16 +210,12 @@
         }
     }
     .promoted-coin-table {
-       td {
-            background-color: $racoins-color-blue-400;
-       }
        tr {
-            &:not(:first-child){
-                background-color: $racoins-color-blue-400;
-            }
-           
+        background-color: $racoins-color-blue-400;
+        border-bottom: 1px solid $racoins-color-blue-200;
        }
     }
+
     .show-more {
         color: $racoins-color-gray-400;
         text-align: center;

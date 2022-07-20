@@ -19,7 +19,8 @@ const app = express();
 const httpServer = http.createServer(app);
 
 const hostApi = process.env.NODE_ENV === "production" ? 
-"https://racoins.cc/api/graphql" :
+"https://racoins.cc/api/graphql" : 
+//"https://racoins.cc/api/graphql"
 "http://localhost:5000/api/graphql"
 
 const corsOptions = {
@@ -244,15 +245,16 @@ async function startApolloServer(typeDefs, resolvers) {
         })
     });
 
-    app.get('/coin/:id', function (req, res) {     
+    app.get('/coin/:id', function (req, res) { 
         axios.post(hostApi, {
             query: `
                 query GetCoinDetails {
-                    CoinDetails(Symbol: "${req.params.id}"){
+                    CoinDetails(CoinID: ${req.params.id}){
                         CoinID
                         Name
                         Symbol
                         VoteToday
+                        LogoLink
                     }
                 }
             `
@@ -269,7 +271,7 @@ async function startApolloServer(typeDefs, resolvers) {
                     data = data.replace(/\$TITLE/g, `${details?.Name} - Racoins.cc`)
                     .replace(/\$DESCRIPTION/g, `${details?.Name} has ${details?.VoteToday} today. 
                     Click to view ${details?.Name} on Racoins.cc`)
-                    .replace(/\$IMAGE/g, "https://racoins.cc/images/logo-racoins-313.png")
+                    .replace(/\$IMAGE/g, `${details?.LogoLink}`)
                 }else{
                     data = data.replace(/\$TITLE/g, `No Found - Racoins.cc`)
                     .replace(/\$DESCRIPTION/g, `Sorry, we dont have what you're looking for.`)

@@ -6,7 +6,9 @@ import {VOTE_COIN, GET_COIN_BY_PK, GET_COIN_DETAILS} from '../../../services/gra
 import { useMutation, useQuery } from '@apollo/client';
 import { Skeleton, Box } from '@mui/material';
 import MessageSnackBar from '../../../popups/MessageSnackBar';
+import HumanVerification from '../../../popups/HumanVerification';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import { copyIcon, moneyHand } from '../../../utils/SvgIcons';
 import poocoinLogo from '../../../../public/icons/poocoin-logo.png';
 import dextoolLogo from '../../../../public/icons/dextools-logo.png';
 import pancakeswapLogo from '../../../../public/icons/pancakeswap-cake-logo.png';
@@ -24,10 +26,13 @@ function CoinDetails() {
         open: false
     })
     
+    const [captchaOpen, setCaptchaOpen] = useState(false);
+    const [captchaValue, setCaptchaValue] = useState();
+
     const location = useLocation();
     const {state} = useLocation();
     const navigate = useNavigate();
-    let getCoinSymbolInUrl = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
+    let getCoinIdInUrl = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
 
     const [clipboard, setClipboard] = useState({
         copied: false
@@ -35,7 +40,7 @@ function CoinDetails() {
 
    
     const [addVote, {loading: addVoteLoading}] = useMutation(VOTE_COIN, {
-        refetchQueries: [{query: GET_COIN_DETAILS, variables: { symbol: getCoinSymbolInUrl }}],
+        refetchQueries: [{query: GET_COIN_DETAILS, variables: { coinId: parseInt(getCoinIdInUrl) }}],
         awaitRefetchQueries: true,
         onError: ({graphQLErrors}) => {
             if(graphQLErrors)
@@ -50,12 +55,12 @@ function CoinDetails() {
     });
     const {loading, data} = useQuery(GET_COIN_DETAILS, {
         variables: {
-            symbol: getCoinSymbolInUrl
+            coinId: parseInt(getCoinIdInUrl)
         },
         onError: () => {
             setSnackBar({
                 type: "error",
-                message: `Cannot find ${getCoinSymbolInUrl}. You will be redirected to home page in 3s`,
+                message: `Cannot find ${getCoinIdInUrl}. You will be redirected to home page in 3s`,
                 open: true
             })
             setTimeout(() => {
@@ -65,23 +70,14 @@ function CoinDetails() {
     });
 
     const handleVoteClick = () => {
-        if(!data?.CoinDetails.IsUpvoted) {     
-            addVote({
-                variables: { coinId: data?.CoinDetails.CoinID },
-                onCompleted: () => {
-                    setSnackBar({
-                        type: "success",
-                        message: "Thank you for voting!.",
-                        open: true
-                     })
-                }
+        if(data?.CoinDetails.IsUpvoted) {     
+            setSnackBar({
+                type: "error",
+                message: "You can vote the same coin once a day",
+                open: true
             })
         }else{
-            setSnackBar({
-               type: "error",
-               message: "You can vote the same coin once a day",
-               open: true
-            })
+            setCaptchaOpen(true);
         } 
     }
 
@@ -94,17 +90,41 @@ function CoinDetails() {
                 open: false
             })
     };
+
+    const handleCloseCaptcha = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setCaptchaOpen(false);
+    }
     
+    const captchaCallBack = (value) => {
+        if(value){
+            addVote({
+                variables: { coinId: data?.CoinDetails.CoinID },
+                onCompleted: () => {
+                    setSnackBar({
+                        type: "success",
+                        message: "Thank you for voting!.",
+                        open: true
+                     })
+                }
+            })
+            setCaptchaOpen(false)
+        }
+    }
+
     const twitterTimeline = (
         <>
             <a className="twitter-timeline" data-height="600px" data-theme="dark" href={`${data?.CoinDetails.Twitter}`}> tweets by {data?.CoinDetails.Symbol}</a>
             <Helmet><script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script></Helmet>
         </>
     )
-
     return (
         <div className='coin-details-container'>
             <MessageSnackBar open={snackBar.open} type={snackBar.type} close={handleCloseSnackbar} message={snackBar.message}/>
+            <HumanVerification open={captchaOpen} close={handleCloseCaptcha} verificationResCallBack={(value) => captchaCallBack(value)}/>
             <div className='nav'>
                 <NavLink to="/">Home&nbsp;/</NavLink>
                 <NavLink to="/all-coins">&nbsp;Coins&nbsp;/</NavLink>
@@ -124,11 +144,11 @@ function CoinDetails() {
                                         <span className="symbol">{"$" + data.CoinDetails.Symbol}</span>
                                         <span className="chain">{data.CoinDetails.Chain}</span>
                                     </div>
-                                    <div className="coin-ca">{data.CoinDetails.Chain} Address: <span>{data.CoinDetails.ContractAddress}</span>
+                                    <div className="coin-ca"><span>{data.CoinDetails.ContractAddress}</span>
                                         <CopyToClipboard text={data.CoinDetails.ContractAddress} onCopy={() => setClipboard({
                                                 copied: true}
                                             )}>
-                                            <button className='copyToClipboard'>{clipboard.copied ? "Copied" : "Copy"}</button>
+                                            <button className='copyToClipboard'>{clipboard.copied ? "Copied" : copyIcon}</button>
                                         </CopyToClipboard>
                                     </div>
                                 </div>
@@ -139,23 +159,23 @@ function CoinDetails() {
                                 <div>Launch: <span>{moment(data.CoinDetails.LaunchDate).format("MMMM Do YYYY")}</span></div>
                             </div>
                             <p style={{fontSize:11, color: '#8f8f8f'}}>Vote to support your community.</p>
-                            <div className="chart">
-                                <iframe width="100%" height="600"
-                                    allowFullScreen frameBorder="0" scrolling="no"
-                                    src={`https://coinbrain.com/embed/${data.CoinDetails.ContractAddress}?theme=dark&chart=1&trades=1`}></iframe>
-                            </div>
-                            <div className='vote'>
+                            <div className='action-buttons'>
                                 <button disabled={addVoteLoading} className={(data.CoinDetails.IsUpvoted ? "voted" : "normal")} 
-                                onClick={() => handleVoteClick()}>{data.CoinDetails.IsUpvoted ? "VOTED" : `VOTE FOR ${data.CoinDetails.Name}`}</button>
+                                onClick={() => handleVoteClick()}>{data.CoinDetails.IsUpvoted ? "VOTED" : `VOTE NOW`}</button>
+                                {data.CoinDetails.IsPresale ? <a href={data.CoinDetails.PresaleLink} target="_blank">{moneyHand}Go to presale page</a> : <></>}
                             </div>
                         </div> :  <div></div>
                         }
+                    </div>
+                    <div className="chart">
+                        <iframe width="100%" height="600" style={{borderRadius: 10, border: '1px solid #1d2744'}} allowFullScreen frameBorder="0" scrolling="no"
+                            src={`https://coinbrain.com/embed/${data?.CoinDetails.ContractAddress}?theme=dark&chart=1&trades=1`}></iframe>
                     </div>
                     <div className="coin-description">
                         {loading ?  <Box sx={{ width: '100%' }}>
                                         <Skeleton /><Skeleton animation="wave" /><Skeleton animation={false} />
                                     </Box> : data ? 
-                            <div> <h3>Coin Description:</h3>
+                            <div> <h3>About {data?.CoinDetails.Name}</h3>
                                 <span>{data?.CoinDetails.Description}</span>
                             </div>
                         :  <div></div>
@@ -190,7 +210,7 @@ function CoinDetails() {
                                     </>
                                    : data?.CoinDetails.Chain === 'ETH' ? 
                                     <a target="_blank" href={`https://www.dextools.io/app/ether/pair-explorer/${data?.CoinDetails.ContractAddress}`} className="chart"><img src={dextoolLogo}/>DexTools</a>
-                                   : <></>}
+                                   : <span className='no-available'>No available charts</span>}
                                 </div>
                         :  <div></div>
                         }
@@ -205,7 +225,7 @@ function CoinDetails() {
                                  <a className='swap' target="_blank" href={`https://pancakeswap.finance/swap?outputCurrency=${data?.CoinDetails.ContractAddress}`}><img src={pancakeswapLogo}/>PancakeSwap</a>
                                : data?.CoinDetails.Chain === 'ETH' ? 
                                  <a  className='swap' target="_blank" href={`https://app.uniswap.org/#/swap?inputCurrency=${data?.CoinDetails.ContractAddress}`}><img src={uniswapLogo}/>UniSwap</a>
-                               : <span className='swap swap-noExchange'>No exchange</span>}
+                               : <span className='swap no-available'>No exchange</span>}
                             </div>
                         :  <div></div>
                         }
@@ -215,6 +235,7 @@ function CoinDetails() {
                                         <Skeleton /><Skeleton animation="wave" /><Skeleton animation={false} />
                                     </Box> : data ? 
                             <div>
+                            <h3>Community</h3>
                                 <div>
                                     {data.CoinDetails.Telegram !== "" ? <a target="_blank" href={data.CoinDetails.Telegram} className="telegram"><i className="fa-brands fa-telegram"></i>&nbsp;Telegram</a> : ""}
                                     {data.CoinDetails.Twitter !== "" ?  <a target="_blank" href={data.CoinDetails.Twitter} className="twitter"><i className="fa-brands fa-twitter"></i>&nbsp;Twitter</a> : ""}

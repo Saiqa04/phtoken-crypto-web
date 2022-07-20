@@ -158,8 +158,8 @@ export const GET_PRESALE_COINS = gql`
 `;
 
 export const GET_COIN_DETAILS = gql`
-   query GetCoinDetails($symbol: String!) {
-        CoinDetails(Symbol: $symbol) {
+   query GetCoinDetails($coinId: Int!) {
+        CoinDetails(CoinID: $coinId) {
             CoinID
             Name
             Chain
@@ -170,6 +170,7 @@ export const GET_COIN_DETAILS = gql`
             IsDoxxed
             Description
             AuditLink
+            PresaleLink
             Website
             Telegram
             Twitter
@@ -258,8 +259,14 @@ export const VOTE_COIN = gql`
     }
 `;
 export const ADD_COIN = gql`
-    mutation CreateCoin($name: String!, $symbol: String!, $chain: String!, $contractAddress: String!, $description: String!, $isPresale: Boolean!, $launchDate: Date!, $telegram: String!, $website: String, $twitter: String, $discord: String, $audit: String, $logo: String!, $contactEmail: String!, $status: String!) {
-        createCoin(Name: $name, Symbol: $symbol, Chain: $chain, ContractAddress: $contractAddress, Description: $description, IsPresale: $isPresale, LaunchDate: $launchDate, Telegram: $telegram, Website: $website, Twitter: $twitter, Discord: $discord, AuditLink: $audit, LogoLink: $logo, ContactEmail:$contactEmail, Status: $status)
+    mutation CreateCoin($name: String!, $symbol: String!, 
+    $chain: String!, $contractAddress: String!, 
+    $description: String!, $isPresale: Boolean!, 
+    $launchDate: Date!, $telegram: String!, 
+    $website: String, $twitter: String, $discord: String, 
+    $audit: String, $presaleLink: String, $logo: String!, 
+    $contactEmail: String!, $status: String!) {
+        createCoin(Name: $name, Symbol: $symbol, Chain: $chain, ContractAddress: $contractAddress, Description: $description, IsPresale: $isPresale, LaunchDate: $launchDate, Telegram: $telegram, Website: $website, Twitter: $twitter, Discord: $discord, AuditLink: $audit, PresaleLink: $presaleLink, LogoLink: $logo, ContactEmail:$contactEmail, Status: $status)
     }
 `;
 export const ADD_RESERVATION = gql`

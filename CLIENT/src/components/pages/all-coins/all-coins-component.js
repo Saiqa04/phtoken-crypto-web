@@ -93,7 +93,7 @@ export default function AllCoins() {
                                 <td>
                                     <div className='row-name-flex'>
                                             <div>
-                                                <div><a className='coin-name' href={`/coin/${row.Symbol}`}>{row.Name}</a></div> 
+                                                <div><a className='coin-name' href={`/coin/${row.CoinID}`}>{row.Name}</a></div> 
                                                 {/*<div><span onClick={() => viewCoinDetails(row)} className="coin-name">{row.Name}</span></div>*/}
                                                 <div> {(row.AuditLink) === null || row.AuditLink === "" ? "" : <span className="audited">Audited</span>}{(row.IsDoxxed) == false || (row.IsDoxxed) === 0 ?  "" : <span className="doxxed">Doxxed</span>}</div>
                                             </div>
@@ -121,7 +121,7 @@ export default function AllCoins() {
                                 <td>{row.AllTimeVote}&nbsp;&nbsp;<span style={{fontSize: 14,color:'#18c477'}}>{svgArrowUp}{row.VoteToday}</span></td>
                                 <td>
                                     <a className={(row.IsUpvoted ? "button voted" : "button normal")} 
-                                    href={`/coin/${row.Symbol}`}>VOTE</a>
+                                    href={`/coin/${row.CoinID}`}>VOTE</a>
                                 </td>
                         </tr>
                         ))}
