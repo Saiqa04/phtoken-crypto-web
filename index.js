@@ -160,6 +160,7 @@ async function startApolloServer(typeDefs, resolvers) {
             "frame-src" : [
                 "https://*.twitter.com",
                 "https://coinbrain.com",
+                "https://*.google.com"
             ],
             "img-src": [
                 "'self'",
